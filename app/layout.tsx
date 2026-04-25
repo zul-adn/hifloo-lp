@@ -17,7 +17,6 @@ const montserrat = Montserrat({
 
 const playwrite = Playwrite_DE_SAS({
   weight: ["100", "200", "300", "400"],
-  subsets: ["latin"],
   variable: "--font-playwrite",
 });
 
