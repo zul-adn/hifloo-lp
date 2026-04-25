@@ -287,7 +287,7 @@ export default function Problem() {
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 -left-20 w-64 h-64 bg-red-200 rounded-full blur-3xl opacity-20"
+          className="absolute top-20 -left-20 w-64 h-64 bg-red-200 rounded-full blur-xl opacity-20"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
@@ -296,7 +296,7 @@ export default function Problem() {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-20 -right-20 w-96 h-96 bg-orange-200 rounded-full blur-3xl opacity-20"
+          className="absolute bottom-20 -right-20 w-96 h-96 bg-orange-200 rounded-full blur-xl opacity-20"
           animate={{
             scale: [1.2, 1, 1.2],
             x: [0, -30, 0],

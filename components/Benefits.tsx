@@ -40,32 +40,30 @@ export default function Benefits() {
       id="benefits"
       className="relative py-20 lg:py-28 bg-gradient-to-br from-primary via-blue-500 to-primary overflow-hidden"
     >
-      {/* Animated background patterns */}
+      {/* Animated background patterns - Simplified for mobile */}
       <div className="absolute inset-0 opacity-10">
-        <motion.div
+        <div
           className="absolute top-0 left-0 w-full h-full"
           style={{
             backgroundImage:
               "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
             backgroundSize: "40px 40px",
           }}
-          animate={{
-            backgroundPosition: ["0px 0px", "40px 40px"],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
-      {/* Floating elements */}
+      {/* Floating elements - Optimized */}
       <motion.div
-        className="absolute top-20 left-10 w-20 h-20 bg-white/20 rounded-full blur-xl"
-        animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="hidden md:block absolute top-20 left-10 w-20 h-20 bg-white/20 rounded-full blur-lg"
+        style={{ willChange: "transform" }}
+        animate={{ y: [0, 20, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-32 right-20 w-32 h-32 bg-white/20 rounded-full blur-xl"
-        animate={{ y: [0, -40, 0], x: [0, -30, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="hidden md:block absolute bottom-32 right-20 w-32 h-32 bg-white/20 rounded-full blur-lg"
+        style={{ willChange: "transform" }}
+        animate={{ y: [0, -30, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">

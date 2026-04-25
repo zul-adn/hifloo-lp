@@ -16,25 +16,25 @@ export default function Solution() {
 
   return (
     <section className="relative py-20 lg:py-28 bg-gradient-to-br from-primary/5 via-blue-50 to-white overflow-hidden">
-      {/* Animated background shapes */}
+      {/* Animated background shapes - Optimized */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 
-          className="absolute top-1/4 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
+          className="absolute top-1/4 left-0 w-72 h-72 bg-primary/10 rounded-full blur-xl md:blur-2xl"
+          style={{ willChange: "transform" }}
           animate={{ 
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.2, 1]
+            x: [0, 60, 0],
+            scale: [1, 1.1, 1]
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-400/10 rounded-full blur-xl md:blur-2xl"
+          style={{ willChange: "transform" }}
           animate={{ 
-            x: [0, -80, 0],
-            y: [0, -60, 0],
-            scale: [1.2, 1, 1.2]
+            x: [0, -50, 0],
+            scale: [1.1, 1, 1.1]
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 

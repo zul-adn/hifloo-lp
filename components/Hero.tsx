@@ -10,36 +10,36 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-light via-blue-50 to-white overflow-hidden pt-20">
-      {/* Animated Decorative Background Elements */}
+      {/* Animated Decorative Background Elements - Optimized for mobile */}
       <motion.div
-        className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl"
+        className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-xl md:blur-2xl"
+        style={{ willChange: "transform" }}
         animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 50, 0],
-          y: [0, 30, 0],
+          scale: [1, 1.1, 1],
+          x: [0, 30, 0],
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-xl md:blur-2xl"
+        style={{ willChange: "transform" }}
+        animate={{
+          scale: [1.1, 1, 1.1],
+          x: [0, -20, 0],
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-400/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          x: [0, -30, 0],
-          y: [0, -40, 0],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-      />
 
-      {/* Floating elements */}
+      {/* Floating elements - Hidden on mobile for performance */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-16 h-16 border-4 border-primary/20 rounded-2xl"
-        animate={{ rotate: 360, y: [0, 20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        className="hidden md:block absolute top-1/4 left-1/4 w-16 h-16 border-4 border-primary/20 rounded-2xl"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
-        className="absolute bottom-1/3 right-1/4 w-12 h-12 border-4 border-blue-400/20 rounded-full"
-        animate={{ rotate: -360, y: [0, -30, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        className="hidden md:block absolute bottom-1/3 right-1/4 w-12 h-12 border-4 border-blue-400/20 rounded-full"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20">

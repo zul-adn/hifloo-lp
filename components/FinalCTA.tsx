@@ -20,37 +20,37 @@ export default function FinalCTA() {
       id="demo"
       className="relative py-20 lg:py-32 bg-gradient-to-br from-primary via-blue-500 to-primary overflow-hidden"
     >
-      {/* Animated background elements */}
+      {/* Animated background elements - Optimized */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"
+          className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-xl md:blur-2xl"
+          style={{ willChange: "transform" }}
           animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.2, 1],
+            x: [0, 60, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-xl md:blur-2xl"
+          style={{ willChange: "transform" }}
+          animate={{
+            x: [0, -50, 0],
+            scale: [1.1, 1, 1.1],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, -60, 0],
-            scale: [1.2, 1, 1.2],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
 
-        {/* Floating shapes */}
+        {/* Floating shapes - Hidden on mobile */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-20 h-20 border-4 border-white/20 rounded-2xl"
-          animate={{ rotate: 360, y: [0, 30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="hidden md:block absolute top-1/4 left-1/4 w-20 h-20 border-4 border-white/20 rounded-2xl"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-1/4 w-16 h-16 border-4 border-white/20 rounded-full"
-          animate={{ rotate: -360, y: [0, -40, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          className="hidden md:block absolute bottom-1/3 right-1/4 w-16 h-16 border-4 border-white/20 rounded-full"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         />
       </div>
 

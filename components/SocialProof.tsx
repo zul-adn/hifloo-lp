@@ -35,8 +35,8 @@ export default function SocialProof() {
     <section className="relative py-20 lg:py-28 bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-40">
-        <div className="absolute top-1/4 left-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-0 w-64 h-64 bg-primary/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-blue-400/20 rounded-full blur-xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
