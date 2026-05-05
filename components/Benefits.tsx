@@ -9,6 +9,8 @@ import {
 } from "./Icons3D";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export default function Benefits() {
   const { t } = useLanguage();
 
@@ -38,10 +40,10 @@ export default function Benefits() {
   return (
     <section
       id="benefits"
-      className="relative py-20 lg:py-28 bg-gradient-to-br from-primary via-blue-500 to-primary overflow-hidden"
+      className="relative py-20 lg:py-28 bg-brand-900 overflow-hidden"
     >
-      {/* Animated background patterns - Simplified for mobile */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Subtle dot pattern */}
+      <div className="absolute inset-0 opacity-[0.06]">
         <div
           className="absolute top-0 left-0 w-full h-full"
           style={{
@@ -52,81 +54,53 @@ export default function Benefits() {
         />
       </div>
 
-      {/* Floating elements - Optimized */}
-      <motion.div
-        className="hidden md:block absolute top-20 left-10 w-20 h-20 bg-white/20 rounded-full blur-lg"
-        style={{ willChange: "transform" }}
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="hidden md:block absolute bottom-32 right-20 w-32 h-32 bg-white/20 rounded-full blur-lg"
-        style={{ willChange: "transform" }}
-        animate={{ y: [0, -30, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5, ease: EASE }}
         >
-          <h2 className="text-4xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
-            {t("benefits.title")} <br />
-            <span className="font-script">{t("benefits.titleHighlight")}</span>
+          <span className="inline-flex items-center gap-2 text-white bg-white/10 px-3 py-1 rounded-full text-sm font-semibold mb-4 border border-white/15">
+            {t("benefits.badge")}
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-4 leading-tight tracking-tight">
+            {t("benefits.title")}{" "}
+            <span className="font-script text-white/90">
+              {t("benefits.titleHighlight")}
+            </span>
           </h2>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
             {t("benefits.subtitle")}
           </p>
         </motion.div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -8 }}
-              className="group relative"
+              transition={{ duration: 0.5, delay: index * 0.08, ease: EASE }}
+              whileHover={{ y: -4 }}
+              className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
             >
-              {/* Glow effect */}
-              <div className="absolute -inset-1 bg-white rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300"></div>
-
-              <div className="relative bg-white/10 backdrop-blur-sm p-8 rounded-3xl border-2 border-white/20 hover:border-white/40 transition-all">
-                {/* Icon with animated background */}
-                <div className="relative mb-6">
-                  <motion.div
-                    className="absolute inset-0 bg-white/20 rounded-2xl blur-lg"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.2,
-                    }}
-                  />
-                  <div className="relative w-20 h-20 mx-auto transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                    <benefit.Icon className="w-full h-full" />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-2xl font-heading font-bold text-white mb-3 text-center">
-                  {t(benefit.titleKey)}
-                </h3>
-                <p className="text-white/90 text-lg text-center leading-relaxed">
-                  {t(benefit.descKey)}
-                </p>
-
-                {/* Decorative line */}
-                <div className="mt-6 h-1 w-0 group-hover:w-full bg-gradient-to-r from-transparent via-white to-transparent transition-all duration-500 mx-auto"></div>
+              {/* Icon */}
+              <div className="w-16 h-16 mb-5 mx-auto">
+                <benefit.Icon className="w-full h-full" />
               </div>
+
+              {/* Content */}
+              <h3 className="text-xl font-heading font-bold text-white mb-2 text-center">
+                {t(benefit.titleKey)}
+              </h3>
+              <p className="text-white/70 text-base text-center leading-relaxed">
+                {t(benefit.descKey)}
+              </p>
             </motion.div>
           ))}
         </div>

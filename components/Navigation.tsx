@@ -8,7 +8,6 @@ import {
   trackDemoRequest,
 } from "@/utils/analytics";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,9 +23,9 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-white/98 backdrop-blur-lg shadow-lg shadow-primary/10"
+          ? "bg-white/98 backdrop-blur-lg border-b border-border"
           : "bg-transparent"
       }`}
     >
@@ -35,73 +34,66 @@ export default function Navigation() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-3xl font-script text-primary font-normal"
+            className="text-2xl font-script text-primary font-normal"
           >
             hifloo
           </Link>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
-            {/* <Link
+            <Link
               href="#features"
               onClick={() => trackNavigation("Features")}
-              className="text-dark hover:text-primary font-medium transition-colors"
+              className="text-ink-900 hover:text-primary font-medium transition-colors duration-200"
             >
               {t("nav.features")}
             </Link>
             <Link
               href="#benefits"
               onClick={() => trackNavigation("Benefits")}
-              className="text-dark hover:text-primary font-medium transition-colors"
+              className="text-ink-900 hover:text-primary font-medium transition-colors duration-200"
             >
               {t("nav.benefits")}
-            </Link> */}
-            {/* <Link href="#pricing" onClick={() => trackNavigation("Pricing")} className="text-dark hover:text-primary font-medium transition-colors">
-              {t("nav.pricing")}
-            </Link> */}
+            </Link>
           </div>
 
           {/* CTA Button & Language Switcher */}
           <div className="flex items-center gap-4">
             {/* Language Switcher */}
-            <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1">
-              <motion.button
+            <div className="flex items-center gap-1 bg-muted rounded-full p-1">
+              <button
                 onClick={() => setLanguage("id")}
-                className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-full text-sm font-normal transition-colors duration-200 ${
                   language === "id"
-                    ? "bg-primary text-white shadow-md"
-                    : "text-gray hover:text-dark"
+                    ? "bg-white text-primary shadow-sm"
+                    : "text-ink-400 hover:text-ink-900"
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 ID
-              </motion.button>
-              <motion.button
+              </button>
+              <button
                 onClick={() => setLanguage("en")}
-                className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-full text-sm font-normal transition-colors duration-200 ${
                   language === "en"
-                    ? "bg-primary text-white shadow-md"
-                    : "text-gray hover:text-dark"
+                    ? "bg-white text-primary shadow-sm"
+                    : "text-ink-400 hover:text-ink-900"
                 }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
                 EN
-              </motion.button>
+              </button>
             </div>
 
             <Link
               href="#demo"
               onClick={() => trackDemoRequest("Navigation")}
-              className="hidden sm:inline-block text-primary hover:text-primary/80 font-semibold transition-colors"
+              className="hidden sm:inline-block text-primary hover:text-primary-dark font-semibold transition-colors duration-200"
             >
               {t("nav.demo")}
             </Link>
             <Link
               href="#demo"
               onClick={() => trackCTAClick("Mulai Gratis", "Navigation")}
-              className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all"
+              className="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 transition-all duration-200"
             >
               {t("nav.start")}
             </Link>

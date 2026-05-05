@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { trackCTAClick, trackDemoRequest } from "@/utils/analytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export default function FinalCTA() {
   const { t } = useLanguage();
 
@@ -18,199 +20,129 @@ export default function FinalCTA() {
   return (
     <section
       id="demo"
-      className="relative py-20 lg:py-32 bg-gradient-to-br from-primary via-blue-500 to-primary overflow-hidden"
+      className="relative py-20 lg:py-32 bg-primary overflow-hidden"
     >
-      {/* Animated background elements - Optimized */}
+      {/* Subtle background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-xl md:blur-2xl"
-          style={{ willChange: "transform" }}
-          animate={{
-            x: [0, 60, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-xl md:blur-2xl"
-          style={{ willChange: "transform" }}
-          animate={{
-            x: [0, -50, 0],
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Floating shapes - Hidden on mobile */}
-        <motion.div
-          className="hidden md:block absolute top-1/4 left-1/4 w-20 h-20 border-4 border-white/20 rounded-2xl"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="hidden md:block absolute bottom-1/3 right-1/4 w-16 h-16 border-4 border-white/20 rounded-full"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl"></div>
       </div>
 
       <motion.div
         className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5, ease: EASE }}
       >
-        {/* Urgency badge */}
-        {/* <motion.div
-          className="text-center mb-8"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-        >
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full border-2 border-white/30">
-            <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              🔥
-            </motion.span>
-            <span className="text-white font-bold text-sm">
-              {t("cta.badge")}
-            </span>
-          </div>
-        </motion.div> */}
-
         <div className="text-center mb-12">
           <motion.h2
-            className="text-4xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-4xl lg:text-5xl font-heading font-bold text-white mb-6 leading-tight tracking-tight"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
           >
             {t("cta.title")}
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-white to-yellow-200 font-script">
+            <span className="font-script text-white/90">
               {t("cta.titleHighlight")}
             </span>
           </motion.h2>
 
           <motion.p
-            className="text-xl lg:text-2xl text-white/95 mb-8 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-lg lg:text-xl text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: EASE }}
           >
             {t("cta.subtitle")}
           </motion.p>
 
           {/* Feature list */}
           <motion.div
-            className="flex flex-wrap justify-center gap-4 mb-10"
-            initial={{ opacity: 0, y: 20 }}
+            className="flex flex-wrap justify-center gap-3 mb-10"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: EASE }}
           >
             {features.map((feature, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-white font-semibold"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: 0.6 + index * 0.1,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-                whileHover={{ scale: 1.05 }}
+                className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/15 text-white font-medium text-sm"
               >
                 {feature}
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>
 
         {/* CTA Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-10"
-          initial={{ opacity: 0, y: 20 }}
+          className="flex flex-col sm:flex-row gap-3 justify-center mb-10"
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.5, delay: 0.4, ease: EASE }}
         >
-          <motion.div
-            whileHover={{ scale: 1.05, y: -3 }}
-            whileTap={{ scale: 0.95 }}
+          <Link
+            href="#demo"
+            onClick={() => trackCTAClick(t("cta.start"), "Final CTA")}
+            className="inline-flex items-center justify-center gap-2 bg-white text-primary px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
           >
-            <Link
-              href="#demo"
-              onClick={() => trackCTAClick(t("cta.start"), "Final CTA")}
-              className="group relative inline-flex items-center gap-3 bg-white text-primary px-10 py-5 rounded-full font-bold text-lg shadow-2xl overflow-hidden"
+            <span>{t("cta.start")}</span>
+            <svg
+              className="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              {/* Animated gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 to-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <span className="relative">{t("cta.start")}</span>
-              <svg
-                className="relative w-5 h-5 transform group-hover:translate-x-1 transition-transform"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Link>
-          </motion.div>
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
 
-          <motion.div
-            whileHover={{ scale: 1.05, y: -3 }}
-            whileTap={{ scale: 0.95 }}
+          <Link
+            href="#demo"
+            onClick={() => trackDemoRequest("Final CTA")}
+            className="inline-flex items-center justify-center gap-2 bg-transparent text-white px-8 py-4 rounded-xl font-semibold text-base border border-white/40 hover:bg-white hover:text-primary transition-all duration-200"
           >
-            <Link
-              href="#demo"
-              onClick={() => trackDemoRequest("Final CTA")}
-              className="group inline-flex items-center gap-3 bg-transparent text-white px-10 py-5 rounded-full font-bold text-lg border-2 border-white hover:bg-white hover:text-primary transition-all"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                <path
-                  fillRule="evenodd"
-                  d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {t("cta.demo")}
-            </Link>
-          </motion.div>
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path
+                fillRule="evenodd"
+                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+            {t("cta.demo")}
+          </Link>
         </motion.div>
 
         {/* Social proof strip */}
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-8 text-white/80"
+          className="flex flex-wrap items-center justify-center gap-6 text-white/80"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.9 }}
+          transition={{ duration: 0.5, delay: 0.5, ease: EASE }}
         >
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
               {[...Array(4)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-200 to-yellow-400 border-2 border-white flex items-center justify-center text-sm font-bold text-primary"
+                  className="w-9 h-9 rounded-full bg-white border-2 border-primary flex items-center justify-center text-sm font-semibold text-primary"
                 >
                   {String.fromCharCode(65 + i)}
                 </div>
               ))}
             </div>
-            <span className="font-semibold">{t("cta.trust")}</span>
+            <span className="font-medium text-sm">{t("cta.trust")}</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -218,7 +150,7 @@ export default function FinalCTA() {
               {[...Array(5)].map((_, i) => (
                 <svg
                   key={i}
-                  className="w-5 h-5 text-yellow-300"
+                  className="w-4 h-4 text-yellow-300"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -226,22 +158,7 @@ export default function FinalCTA() {
                 </svg>
               ))}
             </div>
-            <span className="font-semibold">4.9/5</span>
-          </div>
-        </motion.div>
-
-        {/* Urgency Message */}
-        <motion.div
-          className="text-center mt-10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 1 }}
-        >
-          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-            <p className="text-white/95 text-lg font-semibold">
-              {t("cta.timer")}
-            </p>
+            <span className="font-medium text-sm">4.9/5</span>
           </div>
         </motion.div>
       </motion.div>
