@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Montserrat, Playwrite_DE_SAS } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from '@/lib/useLanguage';
 import Script from "next/script";
 
 const poppins = Poppins({
@@ -53,7 +54,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
