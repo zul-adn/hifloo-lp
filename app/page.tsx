@@ -357,7 +357,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
           <div className="flex flex-col items-center">
             {/* Left: Text */}
-            <div className="w-full max-w-2xl mx-auto text-center lg:text-center">
+            <AnimateOnScroll animation="fadeInUp" className="w-full max-w-2xl mx-auto text-center lg:text-center">
               <div className="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 rounded-full px-4 py-1 text-sm text-blue-700 font-medium mb-6 shadow-sm shadow-blue-100">
                 <Star className="w-4 h-4" />
                 500+ bisnis sudah pakai
@@ -404,11 +404,11 @@ export default function LandingPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </AnimateOnScroll>
 
             {/* Product mockup preview */}
-            <AnimateOnScroll>
-              <div className="relative mt-16 w-full max-w-4xl mx-auto">
+            <AnimateOnScroll animation="scaleIn" delay={200}>
+              <div className="relative mt-16 w-full max-w-4xl mx-auto animate-floatY">
                 <div
                   aria-hidden="true"
                   className="absolute -inset-x-10 -bottom-10 h-40 bg-blue-400/20 blur-3xl rounded-full"
@@ -502,7 +502,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
+          <AnimateOnScroll animation="stagger" className="grid sm:grid-cols-2 gap-5">
             {PROBLEMS.map((p) => (
               <div
                 key={p.title}
@@ -523,7 +523,7 @@ export default function LandingPage() {
                 </div>
               </div>
             ))}
-          </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -544,7 +544,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <AnimateOnScroll animation="stagger" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {FEATURES.map((f) => (
               <div
                 key={f.title}
@@ -561,7 +561,7 @@ export default function LandingPage() {
                 </p>
               </div>
             ))}
-          </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -643,7 +643,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-5">
+          <AnimateOnScroll animation="stagger" className="grid sm:grid-cols-3 gap-5">
             {TESTIMONIALS.map((t) => (
               <div
                 key={t.name}
@@ -679,7 +679,7 @@ export default function LandingPage() {
                 </div>
               </div>
             ))}
-          </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
@@ -963,7 +963,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto items-start">
+          <AnimateOnScroll animation="stagger" className="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto items-start">
             {PRICING.map((plan) => {
               const featured = plan.badge === "Paling Laris";
               const isFree = plan.price === "0";
@@ -1101,7 +1101,7 @@ export default function LandingPage() {
                 </div>
               );
             })}
-          </div>
+          </AnimateOnScroll>
 
           <div className="text-center mt-10">
             <p className="text-sm text-slate-400">
