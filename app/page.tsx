@@ -274,7 +274,7 @@ export default function LandingPage() {
                 <option value="ru">🇷🇺 Русский</option>
               </select> */}
               <a
-                href="https://api-uat.hifloo.com/id/login"
+                href="https://app.hifloo.com/id/login"
                 className="text-sm text-slate-500 hover:text-slate-800 transition-colors"
               >
                 {t("nav.masuk")}
@@ -328,7 +328,7 @@ export default function LandingPage() {
               <option value="ru">🇷🇺 Русский</option>
             </select>
             <a
-              href="https://api-uat.hifloo.com/id/login"
+              href="https://app.hifloo.com/id/login"
               className="block text-sm text-slate-600 py-2"
             >
               {t("nav.masuk")}
@@ -1475,7 +1475,7 @@ export default function LandingPage() {
                   Masalah
                 </button>
                 <a
-                  href="https://api-uat.hifloo.com/id/login"
+                  href="https://app.hifloo.com/id/login"
                   className="block text-sm text-slate-400 hover:text-white transition-colors"
                 >
                   Login
