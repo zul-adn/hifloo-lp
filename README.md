@@ -1,110 +1,62 @@
-# HiFloo - Mini ERP Solution
+# Landing page Hifloo
 
-Landing page modern dan elegan untuk HiFloo, solusi Mini ERP yang membantu bisnis mengelola penjualan, HR, accounting, dan CRM dalam satu platform.
+Situs pemasaran Hifloo — sistem kasir, stok, dan karyawan untuk UMKM Indonesia.
+Dibangun dengan Next.js App Router, Tailwind CSS, dan TypeScript.
 
-## 🚀 Tech Stack
-
-- **Next.js 16** - React framework dengan App Router
-- **TypeScript** - Type-safe development
-- **Tailwind CSS 4** - Utility-first CSS framework
-- **Google Fonts:**
-  - Poppins - Font utama untuk body text
-  - Montserrat - Font untuk heading
-  - Playwrite DE SAS - Font dekoratif untuk aksen elegan
-
-## 🎨 Design System
-
-### Colors
-- **Primary:** `#0984e3` (Brand blue)
-- **Dark:** `#2d3436`
-- **Light:** `#f8f9fa`
-- **Gray:** `#636e72`
-
-### Typography
-- **Body:** Poppins
-- **Headings:** Montserrat
-- **Script/Accent:** Playwrite DE SAS
-
-## 📦 Getting Started
-
-### Installation
+## Menjalankan
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
+cp .env.example .env.local   # lalu isi nilainya
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the landing page.
+Perintah lain: `npm run build`, `npm start`, `npm run lint`.
 
-## 📄 Landing Page Sections
+## Variabel lingkungan
 
-1. **Navigation** - Fixed header dengan logo dan CTA
-2. **Hero Section** - Above the fold dengan headline kuat dan CTA utama
-3. **Problem Section** - Identifikasi pain points target audience
-4. **Solution Section** - Positioning HiFloo sebagai solusi
-5. **Features Section** - 4 modul utama (Sales, HR, Accounting, CRM)
-6. **Benefits Section** - Value proposition yang jelas
-7. **Social Proof** - Testimonial dan statistik
-8. **How It Works** - 3 langkah mudah memulai
-9. **Final CTA** - Call-to-action dengan urgency
-10. **Footer** - Informasi dan links penting
+Lihat `.env.example`. Yang perlu diperhatikan: `N8N_WEBHOOK_URL` dan `N8N_API_KEY`
+**tidak** memakai awalan `NEXT_PUBLIC_`. Keduanya hanya dibaca di server oleh
+`app/api/daftar/route.ts`. Formulir pendaftaran di browser memanggil `/api/daftar`,
+bukan webhook n8n secara langsung, supaya kunci API tidak pernah terkirim ke pengunjung.
 
-## 🎯 Key Features
+Kalau `N8N_WEBHOOK_URL` belum diisi, formulir akan membalas 503 dan menampilkan
+pesan kegagalan yang umum.
 
-- ✅ Fully responsive design
-- ✅ Modern & clean UI/UX
-- ✅ SEO optimized
-- ✅ Google Analytics ready
-- ✅ Fast loading with Next.js
-- ✅ Type-safe dengan TypeScript
-- ✅ Smooth animations & transitions
-- ✅ Accessibility focused
+## Susunan berkas
 
-## 📊 Google Analytics
+```
+app/
+  layout.tsx            metadata, JSON-LD, font, Google Analytics opsional
+  page.tsx              beranda — hanya menyusun bagian-bagiannya
+  globals.css           token warna, gerak, dan kelas bersama
+  opengraph-image.tsx   gambar pratinjau media sosial, dibuat saat build
+  icon.tsx              favicon, dibuat saat build
+  api/daftar/route.ts   perantara formulir pendaftaran ke n8n
+  privacy/              Kebijakan Privasi (URL dipakai Google Play Console)
+  syarat/               Syarat & Ketentuan
+components/
+  sections.tsx          seluruh bagian beranda (Server Component)
+  mockup.tsx            cuplikan antarmuka produk, digambar dengan HTML
+  site-header.tsx       header + menu mobile
+  site-footer.tsx       footer
+  daftar-dialog.tsx     formulir pendaftaran, memakai <dialog> bawaan
+  daftar-button.tsx     tombol pembuka formulir
+  reveal.tsx            animasi muncul saat masuk viewport
+  legal-shell.tsx       kerangka halaman hukum
+lib/
+  content.ts            SELURUH naskah halaman — ubah di sini
+  site.ts               alamat, kontak, dan tautan
+```
 
-Google Analytics sudah diintegrasikan. Ganti placeholder `G-XXXXXXXXXX` di `app/layout.tsx` dengan Tracking ID Anda.
+## Catatan
 
-## 🔧 Customization
-
-### Update Copy
-Edit file-file komponen di folder `components/` untuk mengubah copywriting.
-
-### Change Colors
-Update warna di `tailwind.config.ts` pada bagian `theme.extend.colors`.
-
-### Modify Fonts
-Ganti import font di `app/layout.tsx` jika ingin menggunakan font berbeda.
-
-## 📝 Brand Voice Guidelines
-
-- Simple & jelas
-- Tidak terlalu teknis
-- Fokus ke manfaat
-- Friendly tapi profesional
-
-## 🎨 Design Principles
-
-- **Whitespace:** Gunakan whitespace besar untuk premium feel
-- **Clean:** Hindari terlalu banyak teks dalam 1 section
-- **Visual:** Gunakan ilustrasi dan icon untuk mempercantik
-- **CTA:** CTA muncul minimal 4x di seluruh halaman
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 📄 License
-
-Copyright © 2026 HiFloo. All rights reserved.
+- **Naskah**: semua teks beranda ada di `lib/content.ts`. Daftar FAQ di berkas itu
+  juga dipakai untuk structured data `FAQPage`, jadi keduanya tidak bisa berbeda.
+- **Tanpa gambar dari luar**: cuplikan produk digambar sebagai HTML. Tidak ada
+  permintaan ke domain lain, tidak ada pergeseran tata letak saat memuat.
+- **Header keamanan** diatur di `next.config.js` (CSP, HSTS, X-Frame-Options, dll).
+  CSP memakai `'unsafe-inline'` untuk skrip karena halaman ini dibuat statis;
+  memakai nonce akan memaksa setiap halaman dirender ulang per permintaan.
+- **Klaim**: jangan menambahkan angka pengguna, rating, atau testimoni yang belum
+  terverifikasi. Rating palsu di structured data berisiko kena sanksi Google.

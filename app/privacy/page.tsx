@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft, Mail, MapPin, Phone } from "lucide-react";
+
+import LegalShell, { type LegalSection } from "@/components/legal-shell";
+import { SITE } from "@/lib/site";
 
 const LAST_UPDATED = "15 September 2026";
-const CONTACT_EMAIL = "zull@floonic.com";
+
 
 export const metadata: Metadata = {
   title: "Kebijakan Privasi",
@@ -21,13 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-type Section = {
-  id: string;
-  title: string;
-  body: React.ReactNode;
-};
-
-const SECTIONS: Section[] = [
+const SECTIONS: LegalSection[] = [
   {
     id: "pendahuluan",
     title: "1. Pendahuluan",
@@ -38,7 +33,7 @@ const SECTIONS: Section[] = [
           &ldquo;kami&rdquo;) mengumpulkan, menggunakan, membagikan, menyimpan,
           dan melindungi informasi Anda saat Anda menggunakan aplikasi Android
           Hifloo, dashboard web di{" "}
-          <span className="font-medium text-slate-700">app.hifloo.com</span>, dan
+          <span className="font-medium text-ink">app.hifloo.com</span>, dan
           layanan terkait lainnya (secara bersama-sama disebut
           &ldquo;Layanan&rdquo;).
         </p>
@@ -140,7 +135,7 @@ const SECTIONS: Section[] = [
             transaksi.
           </li>
           <li>
-            Kami <span className="font-medium text-slate-700">tidak</span>{" "}
+            Kami <span className="font-medium text-ink">tidak</span>{" "}
             menyimpan nomor kartu kredit/debit Anda. Pembayaran diproses oleh
             penyedia pembayaran pihak ketiga yang memiliki kebijakan privasi
             sendiri.
@@ -188,9 +183,9 @@ const SECTIONS: Section[] = [
           </li>
         </ul>
         <p>
-          Kami <span className="font-medium text-slate-700">tidak</span> menjual
+          Kami <span className="font-medium text-ink">tidak</span> menjual
           data pribadi Anda, dan kami{" "}
-          <span className="font-medium text-slate-700">tidak</span> menggunakan
+          <span className="font-medium text-ink">tidak</span> menggunakan
           data bisnis atau data pelanggan Anda untuk iklan pihak ketiga.
         </p>
       </>
@@ -204,21 +199,21 @@ const SECTIONS: Section[] = [
         <p>Kami memproses data Anda berdasarkan:</p>
         <ul>
           <li>
-            <span className="font-medium text-slate-700">Pelaksanaan kontrak</span>{" "}
+            <span className="font-medium text-ink">Pelaksanaan kontrak</span>{" "}
             — untuk menyediakan Layanan yang Anda daftarkan.
           </li>
           <li>
-            <span className="font-medium text-slate-700">Persetujuan</span> —
+            <span className="font-medium text-ink">Persetujuan</span> —
             untuk akses lokasi, kamera, notifikasi, dan komunikasi pemasaran. Anda
             dapat menarik persetujuan kapan saja melalui pengaturan perangkat atau
             aplikasi.
           </li>
           <li>
-            <span className="font-medium text-slate-700">Kepentingan sah</span> —
+            <span className="font-medium text-ink">Kepentingan sah</span> —
             untuk keamanan, pencegahan penipuan, dan peningkatan produk.
           </li>
           <li>
-            <span className="font-medium text-slate-700">Kewajiban hukum</span> —
+            <span className="font-medium text-ink">Kewajiban hukum</span> —
             bila diwajibkan oleh peraturan perundang-undangan yang berlaku.
           </li>
         </ul>
@@ -235,33 +230,33 @@ const SECTIONS: Section[] = [
         </p>
         <ul>
           <li>
-            <span className="font-medium text-slate-700">Penyedia infrastruktur</span>{" "}
+            <span className="font-medium text-ink">Penyedia infrastruktur</span>{" "}
             — layanan hosting, basis data, dan penyimpanan cloud tempat data
             Layanan disimpan.
           </li>
           <li>
-            <span className="font-medium text-slate-700">Penyedia pembayaran</span>{" "}
+            <span className="font-medium text-ink">Penyedia pembayaran</span>{" "}
             — untuk memproses pembayaran langganan Anda.
           </li>
           <li>
-            <span className="font-medium text-slate-700">
+            <span className="font-medium text-ink">
               Layanan analitik &amp; laporan kerusakan
             </span>{" "}
             — untuk memahami penggunaan fitur secara agregat dan memperbaiki bug.
           </li>
           <li>
-            <span className="font-medium text-slate-700">
+            <span className="font-medium text-ink">
               Layanan pengiriman pesan
             </span>{" "}
             — email dan WhatsApp/SMS untuk notifikasi transaksional dan dukungan.
           </li>
           <li>
-            <span className="font-medium text-slate-700">Aparat berwenang</span> —
+            <span className="font-medium text-ink">Aparat berwenang</span> —
             apabila diwajibkan oleh hukum, perintah pengadilan, atau untuk
             melindungi hak dan keselamatan pengguna.
           </li>
           <li>
-            <span className="font-medium text-slate-700">Pengalihan usaha</span> —
+            <span className="font-medium text-ink">Pengalihan usaha</span> —
             jika terjadi merger, akuisisi, atau penjualan aset, data dapat
             dialihkan dengan pemberitahuan kepada Anda sebelumnya.
           </li>
@@ -315,13 +310,13 @@ const SECTIONS: Section[] = [
           </li>
           <li>
             Setelah akun dihapus, data akan dihapus atau dianonimkan dalam waktu{" "}
-            <span className="font-medium text-slate-700">paling lama 30 hari</span>
+            <span className="font-medium text-ink">paling lama 30 hari</span>
             , kecuali data yang wajib kami simpan untuk keperluan hukum,
             perpajakan, atau penyelesaian sengketa.
           </li>
           <li>
             Salinan cadangan (backup) dapat bertahan hingga{" "}
-            <span className="font-medium text-slate-700">90 hari</span> sebelum
+            <span className="font-medium text-ink">90 hari</span> sebelum
             terhapus secara otomatis dari sistem cadangan kami.
           </li>
         </ul>
@@ -350,7 +345,7 @@ const SECTIONS: Section[] = [
         </ul>
         <p>
           Untuk menggunakan hak-hak ini, hubungi kami di{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Kami akan
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Kami akan
           menanggapi paling lambat 30 hari kerja setelah permintaan terverifikasi.
         </p>
       </>
@@ -365,15 +360,15 @@ const SECTIONS: Section[] = [
         <ul>
           <li>
             Melalui aplikasi: menu{" "}
-            <span className="font-medium text-slate-700">
+            <span className="font-medium text-ink">
               Pengaturan → Akun → Hapus Akun
             </span>
             ; atau
           </li>
           <li>
             Mengirim email ke{" "}
-            <a href={`mailto:${CONTACT_EMAIL}?subject=Permintaan%20Hapus%20Akun%20Hifloo`}>
-              {CONTACT_EMAIL}
+            <a href={`mailto:${SITE.email}?subject=Permintaan%20Hapus%20Akun%20Hifloo`}>
+              {SITE.email}
             </a>{" "}
             dengan subjek &ldquo;Permintaan Hapus Akun&rdquo; dari alamat email
             yang terdaftar.
@@ -457,155 +452,39 @@ const SECTIONS: Section[] = [
   },
 ];
 
+const KONTAK: LegalSection = {
+  id: "kontak",
+  title: "14. Hubungi Kami",
+  body: (
+    <>
+      <p>
+        Jika Anda memiliki pertanyaan, keluhan, atau permintaan terkait data pribadi dan Kebijakan
+        Privasi ini, silakan hubungi kami:
+      </p>
+      <ul>
+        <li>
+          Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </li>
+        <li>
+          WhatsApp:{" "}
+          <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer">
+            {SITE.phone}
+          </a>
+        </li>
+        <li>Alamat: {SITE.address}</li>
+      </ul>
+      <p>Permintaan terkait data pribadi kami tanggapi paling lambat 14 hari kerja.</p>
+    </>
+  ),
+};
+
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-800">
-      {/* ── NAV ── */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold font-script bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                hifloo
-              </span>
-            </Link>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Kembali ke beranda
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* ── HEADER ── */}
-      <header className="border-b border-slate-100 bg-gradient-to-b from-blue-50/60 to-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider text-blue-700 bg-blue-50 ring-1 ring-blue-100 rounded-full px-3 py-1 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-            LEGAL
-          </span>
-          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
-            Kebijakan Privasi
-          </h1>
-          <p className="text-lg text-slate-500 max-w-2xl">
-            Kami menjelaskan secara terbuka data apa yang dikumpulkan aplikasi
-            Hifloo, untuk apa data itu dipakai, dan bagaimana Anda bisa
-            mengendalikannya.
-          </p>
-          <p className="text-sm text-slate-400 mt-4">
-            Terakhir diperbarui: {LAST_UPDATED}
-          </p>
-        </div>
-      </header>
-
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid lg:grid-cols-[220px_1fr] gap-10">
-          {/* Daftar isi */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-24">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
-                Daftar isi
-              </p>
-              <nav className="space-y-2">
-                {SECTIONS.map((s) => (
-                  <a
-                    key={s.id}
-                    href={`#${s.id}`}
-                    className="block text-sm text-slate-500 hover:text-blue-600 transition-colors leading-snug"
-                  >
-                    {s.title}
-                  </a>
-                ))}
-                <a
-                  href="#kontak"
-                  className="block text-sm text-slate-500 hover:text-blue-600 transition-colors leading-snug"
-                >
-                  14. Hubungi Kami
-                </a>
-              </nav>
-            </div>
-          </aside>
-
-          {/* Isi kebijakan */}
-          <div
-            className="
-              space-y-10
-              [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-slate-900 [&_h3]:mt-6 [&_h3]:mb-2
-              [&_p]:text-slate-600 [&_p]:leading-relaxed [&_p]:mb-4
-              [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ul]:mb-4
-              [&_li]:text-slate-600 [&_li]:leading-relaxed
-              [&_a]:text-blue-600 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-blue-700
-            "
-          >
-            {SECTIONS.map((s) => (
-              <section key={s.id} id={s.id} className="scroll-mt-24">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
-                  {s.title}
-                </h2>
-                {s.body}
-              </section>
-            ))}
-
-            {/* Kontak */}
-            <section id="kontak" className="scroll-mt-24">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
-                14. Hubungi Kami
-              </h2>
-              <p>
-                Jika Anda memiliki pertanyaan, keluhan, atau permintaan terkait
-                data pribadi dan Kebijakan Privasi ini, silakan hubungi kami:
-              </p>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 sm:p-6 space-y-3 not-prose">
-                <p className="font-semibold text-slate-900">Hifloo</p>
-                <div className="flex items-start gap-2.5">
-                  <Mail className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}`}
-                    className="text-sm text-blue-600 underline underline-offset-2 hover:text-blue-700"
-                  >
-                    {CONTACT_EMAIL}
-                  </a>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <Phone className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
-                  <span className="text-sm text-slate-600">
-                    +62 857 0547 7252
-                  </span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
-                  <span className="text-sm text-slate-600">
-                    Kubu Raya, Kalimantan Barat, Indonesia
-                  </span>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-
-      {/* ── FOOTER ── */}
-      <footer className="border-t border-slate-200 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} Hifloo. All rights reserved.
-          </p>
-          <div className="flex items-center gap-4 text-xs text-slate-500">
-            <Link href="/" className="hover:text-slate-800 transition-colors">
-              Beranda
-            </Link>
-            <Link
-              href="/privacy"
-              className="hover:text-slate-800 transition-colors"
-            >
-              Kebijakan Privasi
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+    <LegalShell
+      judul="Kebijakan Privasi"
+      ringkasan="Kami menjelaskan secara terbuka data apa yang dikumpulkan aplikasi Hifloo, untuk apa data itu dipakai, dan bagaimana Anda bisa mengendalikannya."
+      diperbarui={LAST_UPDATED}
+      sections={[...SECTIONS, KONTAK]}
+    />
   );
 }

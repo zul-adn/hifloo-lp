@@ -1,55 +1,48 @@
-import type { Metadata } from "next";
-import { Poppins, Montserrat, Playwrite_DE_SAS } from "next/font/google";
-import "./globals.css";
-import { LanguageProvider } from '@/lib/useLanguage';
+import type { Metadata, Viewport } from "next";
+import { Inter, Playwrite_DE_SAS } from "next/font/google";
 import Script from "next/script";
 
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700"],
+import { FAQ } from "@/lib/content";
+import { SITE } from "@/lib/site";
+import "./globals.css";
+
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-poppins",
+  display: "swap",
+  variable: "--font-inter",
 });
 
-const montserrat = Montserrat({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-montserrat",
+// Hanya dipakai untuk wordmark "hifloo" di header dan footer.
+const wordmark = Playwrite_DE_SAS({
+  weight: "400",
+  display: "swap",
+  variable: "--font-wordmark",
 });
 
-const playwrite = Playwrite_DE_SAS({
-  weight: ["100", "200", "300", "400"],
-  variable: "--font-playwrite",
-});
-
-const BASE_URL = "https://hifloo.com";
+const JUDUL = "Hifloo — Aplikasi Kasir, Stok & Absensi Karyawan untuk UMKM";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
-  title: {
-    default: "Hifloo — Aplikasi Kasir, Stok & HRIS untuk UMKM Indonesia",
-    template: "%s | Hifloo",
-  },
-  description:
-    "Hifloo adalah sistem POS & HRIS all-in-one untuk UMKM. Kelola kasir, stok otomatis, absensi karyawan, dan laporan keuangan dalam satu aplikasi. Mulai gratis selamanya.",
+  metadataBase: new URL(SITE.url),
+  title: { default: JUDUL, template: "%s | Hifloo" },
+  description: SITE.description,
+  applicationName: SITE.name,
   keywords: [
     "aplikasi kasir",
-    "sistem POS UMKM",
-    "kasir online",
-    "manajemen stok",
-    "absensi karyawan GPS",
-    "laporan keuangan UMKM",
-    "software toko Indonesia",
-    "HRIS UMKM",
-    "CRM pelanggan",
+    "software kasir UMKM",
+    "aplikasi POS Indonesia",
     "kasir offline",
-    "aplikasi toko android",
-    "POS restoran",
-    "multi cabang",
-    "ERP UMKM Indonesia",
+    "manajemen stok toko",
+    "absensi karyawan GPS",
+    "aplikasi absensi HP",
+    "laporan keuangan usaha",
+    "kasir multi cabang",
+    "aplikasi toko Android",
   ],
-  authors: [{ name: "Hifloo", url: BASE_URL }],
-  creator: "Hifloo",
-  publisher: "Hifloo",
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  category: "business",
+  alternates: { canonical: SITE.url },
   robots: {
     index: true,
     follow: true,
@@ -61,170 +54,146 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  alternates: {
-    canonical: BASE_URL,
-  },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: BASE_URL,
-    siteName: "Hifloo",
-    title: "Hifloo — Aplikasi Kasir, Stok & HRIS untuk UMKM Indonesia",
-    description:
-      "Kasir offline, stok realtime, absensi GPS, laporan keuangan — semua dalam satu aplikasi. Gratis selamanya untuk 1 outlet.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Hifloo — Aplikasi POS & HRIS untuk UMKM Indonesia",
-      },
-    ],
+    url: SITE.url,
+    siteName: SITE.name,
+    title: JUDUL,
+    description: SITE.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hifloo — Aplikasi Kasir, Stok & HRIS untuk UMKM Indonesia",
-    description:
-      "Kasir offline, stok realtime, absensi GPS, laporan keuangan — semua dalam satu aplikasi. Mulai gratis.",
-    images: ["/og-image.png"],
-    creator: "@hifloo_id",
+    title: JUDUL,
+    description: SITE.description,
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
+  formatDetection: { telephone: false },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  colorScheme: "light",
+};
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
+const STRUCTURED_DATA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: SITE.url,
+      email: SITE.email,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kubu Raya",
+        addressRegion: "Kalimantan Barat",
+        addressCountry: "ID",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: SITE.phoneE164,
+        contactType: "customer support",
+        areaServed: "ID",
+        availableLanguage: "Indonesian",
+      },
+      sameAs: [SITE.instagram],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      inLanguage: "id-ID",
+      publisher: { "@id": `${SITE.url}/#organization` },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE.url}/#faq`,
+      inLanguage: "id-ID",
+      // Dibangun dari naskah yang sama dengan yang tampil di halaman,
+      // supaya structured data tidak pernah berbeda dengan isi halaman.
+      mainEntity: FAQ.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${SITE.url}/#aplikasi`,
+      name: SITE.name,
+      applicationCategory: "BusinessApplication",
+      applicationSubCategory: "Point of Sale",
+      operatingSystem: "Android, Web",
+      inLanguage: "id-ID",
+      url: SITE.url,
+      publisher: { "@id": `${SITE.url}/#organization` },
+      description: SITE.description,
+      featureList: [
+        "Kasir dengan mode offline",
+        "Manajemen stok otomatis",
+        "Absensi karyawan dan payroll",
+        "Laporan penjualan dan keuangan",
+        "Multi outlet dan transfer stok",
+      ],
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Gratis",
+          price: "0",
+          priceCurrency: "IDR",
+          description: "Satu outlet, kasir dan stok dasar, laporan harian.",
+        },
+        {
+          "@type": "Offer",
+          name: "Pro",
+          price: "85000",
+          priceCurrency: "IDR",
+          description: "Sampai tiga outlet, mode offline penuh, laporan lengkap. Per bulan.",
+        },
+      ],
+    },
+  ],
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${poppins.variable} ${montserrat.variable} ${playwrite.variable}`}>
+    <html lang="id" className={`${inter.variable} ${wordmark.variable}`}>
       <head>
-        {/* JSON-LD Structured Data */}
-        <Script
-          id="json-ld-org"
+        {/* Tanpa JavaScript, IntersectionObserver tidak pernah berjalan.
+            Pastikan seluruh isi halaman tetap terlihat. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "Organization",
-                  "@id": "https://hifloo.com/#organization",
-                  name: "Hifloo",
-                  url: "https://hifloo.com",
-                  logo: "https://hifloo.com/logo.png",
-                  contactPoint: {
-                    "@type": "ContactPoint",
-                    telephone: "+62-857-0547-7252",
-                    contactType: "customer support",
-                    availableLanguage: "Indonesian",
-                  },
-                  sameAs: ["https://www.instagram.com/hifloo_id"],
-                },
-                {
-                  "@type": "SoftwareApplication",
-                  name: "Hifloo",
-                  applicationCategory: "BusinessApplication",
-                  operatingSystem: "Android, Web",
-                  offers: [
-                    {
-                      "@type": "Offer",
-                      name: "Gratis",
-                      price: "0",
-                      priceCurrency: "IDR",
-                    },
-                    {
-                      "@type": "Offer",
-                      name: "Pro",
-                      price: "85000",
-                      priceCurrency: "IDR",
-                      billingIncrement: "P1M",
-                    },
-                  ],
-                  description:
-                    "Sistem POS & HRIS all-in-one untuk UMKM Indonesia. Kasir offline, manajemen stok, absensi karyawan GPS, dan laporan keuangan.",
-                  aggregateRating: {
-                    "@type": "AggregateRating",
-                    ratingValue: "4.9",
-                    reviewCount: "500",
-                  },
-                },
-                {
-                  "@type": "FAQPage",
-                  mainEntity: [
-                    {
-                      "@type": "Question",
-                      name: "Apakah paket Gratis benar-benar gratis selamanya?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Ya, 100% gratis selamanya. Tidak ada biaya tersembunyi, tidak perlu kartu kredit. Paket Gratis cocok untuk toko kecil dengan 1 outlet yang baru mulai rapi.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Apakah kasir tetap bisa jalan saat internet mati?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Ya. Aplikasi kasir Hifloo mendukung mode offline penuh. Semua transaksi tetap tercatat di perangkat dan akan sinkron otomatis ke server begitu koneksi internet kembali.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Apakah ada trial untuk paket Pro?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Ada. Paket Pro bisa dicoba gratis selama 30 hari tanpa kartu kredit.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Apakah HRIS termasuk fitur payroll & slip gaji?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Fitur HRIS di paket Enterprise mencakup absensi GPS, rekap lembur & keterlambatan, dan laporan payroll. Slip gaji digital juga tersedia.",
-                      },
-                    },
-                    {
-                      "@type": "Question",
-                      name: "Bisa diakses dari HP, tablet, dan komputer sekaligus?",
-                      acceptedAnswer: {
-                        "@type": "Answer",
-                        text: "Bisa. Dashboard manajemen bisa diakses dari browser di HP, tablet, maupun komputer. Aplikasi kasir mobile tersedia untuk Android.",
-                      },
-                    },
-                  ],
-                },
-              ],
-            }),
-          }}
-        />
-        {/* Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX');
-            `,
-          }}
+          // Data statis buatan sendiri, tidak ada masukan dari pengguna.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
         />
       </head>
       <body className="font-sans">
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <a
+          href="#konten"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-paper"
+        >
+          Lompat ke konten utama
+        </a>
+        {children}
+
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
