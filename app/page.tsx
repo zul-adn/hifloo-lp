@@ -1347,7 +1347,12 @@ export default function LandingPage() {
                   Syarat & Ketentuan
                 </a>
                 dan{" "}
-                <a href="#" className="text-blue-600 hover:underline mx-1">
+                <a
+                  href="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline mx-1"
+                >
                   Kebijakan Privasi
                 </a>
                 .
@@ -1557,7 +1562,10 @@ export default function LandingPage() {
               &copy; {new Date().getFullYear()} Hifloo. All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-xs text-slate-500">
-              <a href="#" className="hover:text-slate-300 transition-colors">
+              <a
+                href="/privacy"
+                className="hover:text-slate-300 transition-colors"
+              >
                 Kebijakan Privasi
               </a>
               <a href="#" className="hover:text-slate-300 transition-colors">
