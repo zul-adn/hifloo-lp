@@ -106,21 +106,31 @@ export async function POST(request: Request) {
     });
 
     const text = await upstream.text().catch(() => "");
-    let body: Record<string, unknown> = {};
+    let body: any = {};
     try {
-      body = JSON.parse(text) as Record<string, unknown>;
+      body = JSON.parse(text);
     } catch {
       // bukan JSON — dianggap tanpa isi
     }
 
-    // Gagal bila: status non-2xx ATAU webhook membalas `ok: false` (n8n sering
-    // membalas 200 walau isinya error, jadi jangan hanya percaya status HTTP).
-    const failed = !upstream.ok || body.ok === false;
+    // Gagal bila salah satu terpenuhi:
+    //  - status HTTP non-2xx, atau
+    //  - body.ok === false (format lama), atau
+    //  - body.statusCode >= 400 (respons exception Nest: {message,error,statusCode}).
+    // n8n sering membalas 200 walau isinya error, jadi jangan cuma percaya status HTTP.
+    const failed =
+      !upstream.ok ||
+      body.ok === false ||
+      (typeof body.statusCode === "number" && body.statusCode >= 400);
+
     if (failed) {
       console.error("[daftar] webhook membalas", upstream.status, text);
       // Teruskan HANYA pesan yang aman & pendek (mis. "Email sudah terdaftar").
       let message = GENERIC_ERROR;
-      const candidate = body?.message || body?.error;
+      const candidate =
+        body?.message ||
+        (typeof body?.error === "string" ? body.error : body?.error?.message) ||
+        undefined;
       if (typeof candidate === "string" && candidate.length > 0 && candidate.length <= 200) {
         message = candidate;
       }
