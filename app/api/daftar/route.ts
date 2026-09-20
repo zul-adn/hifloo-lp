@@ -113,28 +113,32 @@ export async function POST(request: Request) {
       // bukan JSON — dianggap tanpa isi
     }
 
-    // Gagal bila salah satu terpenuhi:
-    //  - status HTTP non-2xx, atau
-    //  - body.ok === false (format lama), atau
-    //  - body.statusCode >= 400 (respons exception Nest: {message,error,statusCode}).
-    // n8n sering membalas 200 walau isinya error, jadi jangan cuma percaya status HTTP.
-    const failed =
-      !upstream.ok ||
-      body.ok === false ||
-      (typeof body.statusCode === "number" && body.statusCode >= 400);
+    // Deteksi error dari berbagai bentuk respons:
+    //  - body.ok === false (format lama)
+    //  - body.statusCode >= 400 (exception Nest: {message,error,statusCode})
+    //  - body.error.status / body.details.httpCode (wrapper error n8n "continue using error output")
+    const httpCode =
+      (typeof body?.statusCode === "number" && body.statusCode) ||
+      (typeof body?.error?.status === "number" && body.error.status) ||
+      (typeof body?.details?.httpCode === "string" && parseInt(body.details.httpCode, 10)) ||
+      (upstream.status >= 400 ? upstream.status : 0);
+
+    const failed = !upstream.ok || body.ok === false || httpCode >= 400;
 
     if (failed) {
       console.error("[daftar] webhook membalas", upstream.status, text);
       // Teruskan HANYA pesan yang aman & pendek (mis. "Email sudah terdaftar").
+      // Prioritas: message bersih dari backend, lalu message tersarang di wrapper n8n.
       let message = GENERIC_ERROR;
       const candidate =
-        body?.message ||
-        (typeof body?.error === "string" ? body.error : body?.error?.message) ||
+        (typeof body?.message === "string" && body.message) ||
+        (typeof body?.details?.body?.message === "string" && body.details.body.message) ||
+        (typeof body?.error === "string" && body.error) ||
         undefined;
       if (typeof candidate === "string" && candidate.length > 0 && candidate.length <= 200) {
         message = candidate;
       }
-      const status = upstream.status >= 400 && upstream.status < 500 ? upstream.status : 502;
+      const status = httpCode >= 400 && httpCode < 600 ? httpCode : 502;
       return NextResponse.json({ message }, { status });
     }
 
