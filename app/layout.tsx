@@ -19,11 +19,11 @@ const wordmark = Playwrite_DE_SAS({
   variable: "--font-wordmark",
 });
 
-const JUDUL = "Hifloo — Aplikasi Kasir, Stok & Absensi Karyawan untuk UMKM";
+const TITLE = "Hifloo — Aplikasi Kasir, Stok & Absensi Karyawan untuk UMKM";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: JUDUL, template: "%s | Hifloo" },
+  title: { default: TITLE, template: "%s | Hifloo" },
   description: SITE.description,
   applicationName: SITE.name,
   keywords: [
@@ -59,12 +59,12 @@ export const metadata: Metadata = {
     locale: "id_ID",
     url: SITE.url,
     siteName: SITE.name,
-    title: JUDUL,
+    title: TITLE,
     description: SITE.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: JUDUL,
+    title: TITLE,
     description: SITE.description,
   },
   formatDetection: { telephone: false },

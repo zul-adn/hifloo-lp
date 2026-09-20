@@ -3,81 +3,81 @@
  * menyentuh markup. Nama ikon merujuk ke lucide-react, dipetakan di komponen.
  */
 
-export const MASALAH = [
+export const PROBLEMS = [
   {
-    judul: "Stok di catatan dan stok di rak tidak sama",
-    jawab:
+    title: "Stok di catatan dan stok di rak tidak sama",
+    answer:
       "Setiap kali ada penjualan, stoknya berkurang sendiri. Anda dikabari saat barang mulai menipis, bukan setelah pelanggan telanjur kecewa.",
   },
   {
-    judul: "Rekap baru selesai jam sebelas malam",
-    jawab:
+    title: "Rekap baru selesai jam sebelas malam",
+    answer:
       "Begitu toko tutup, laporan penjualan, laba, dan stok sudah jadi. Tinggal diunduh ke Excel atau PDF.",
   },
   {
-    judul: "Absensi masih ditulis di buku",
-    jawab:
+    title: "Absensi masih ditulis di buku",
+    answer:
       "Karyawan absen dari HP masing-masing, lokasinya ikut terekam. Lembur dan keterlambatan langsung terhitung sampai ke gaji.",
   },
   {
-    judul: "Tiap cabang punya versi datanya sendiri",
-    jawab:
+    title: "Tiap cabang punya versi datanya sendiri",
+    answer:
       "Semua outlet masuk ke satu layar. Kiriman barang antar cabang tercatat, jadi tidak perlu telepon-teleponan untuk mencocokkan.",
   },
 ] as const;
 
-export const FITUR = [
+export const FEATURES = [
   {
     icon: "Zap",
-    judul: "Kasir cepat, tetap jalan tanpa internet",
-    desc: "Satu transaksi selesai dalam hitungan detik. Kalau koneksi putus, kasir tetap bisa melayani dan datanya tersimpan di perangkat.",
+    title: "Kasir cepat, tetap jalan tanpa internet",
+    description: "Satu transaksi selesai dalam hitungan detik. Kalau koneksi putus, kasir tetap bisa melayani dan datanya tersimpan di perangkat.",
   },
   {
     icon: "Package",
-    judul: "Stok bergerak sendiri",
-    desc: "Penjualan, pembelian, dan retur langsung mengubah angka stok. Mau stok opname pun tidak perlu tutup toko.",
+    title: "Stok bergerak sendiri",
+    description: "Penjualan, pembelian, dan retur langsung mengubah angka stok. Mau stok opname pun tidak perlu tutup toko.",
   },
   {
     icon: "BarChart3",
-    judul: "Laporan siap kapan saja",
-    desc: "Penjualan, laba rugi, keluar masuk stok, dan rekap karyawan. Bisa dibuka dari HP, bisa diunduh ke Excel atau PDF.",
+    title: "Laporan siap kapan saja",
+    description: "Penjualan, laba rugi, keluar masuk stok, dan rekap karyawan. Bisa dibuka dari HP, bisa diunduh ke Excel atau PDF.",
   },
   {
     icon: "Users",
-    judul: "Absensi dan payroll menyatu",
-    desc: "Jam masuk, lembur, dan keterlambatan langsung dipakai menghitung gaji. Tidak ada yang perlu disalin ulang.",
+    title: "Absensi dan payroll menyatu",
+    description: "Jam masuk, lembur, dan keterlambatan langsung dipakai menghitung gaji. Tidak ada yang perlu disalin ulang.",
   },
   {
     icon: "Building2",
-    judul: "Banyak cabang, satu dashboard",
-    desc: "Bandingkan penjualan antar outlet, pindahkan stok, dan lihat laporan gabungan dari satu layar.",
+    title: "Banyak cabang, satu dashboard",
+    description: "Bandingkan penjualan antar outlet, pindahkan stok, dan lihat laporan gabungan dari satu layar.",
   },
   {
     icon: "FileText",
-    judul: "Rapi saat diperiksa",
-    desc: "Setiap transaksi ada jejaknya: siapa, kapan, dan apa yang diubah. Enak dipakai saat tutup buku atau urusan pajak.",
+    title: "Rapi saat diperiksa",
+    description: "Setiap transaksi ada jejaknya: siapa, kapan, dan apa yang diubah. Enak dipakai saat tutup buku atau urusan pajak.",
   },
 ] as const;
 
-export const SOROTAN = [
+export const HIGHLIGHTS = [
   {
     id: "offline",
     label: "Mode offline",
-    judul: "Internet mati, kasir jalan terus",
-    paragraf:
+    title: "Internet mati, kasir jalan terus",
+    paragraph:
       "Saat koneksi hilang, transaksi tetap tercatat di perangkat. Begitu internet datang lagi, semuanya terkirim ke server dengan sendirinya.",
-    poin: [
+    points: [
       {
-        judul: "Antrean tidak berhenti",
-        desc: "Kasir tetap bisa memindai barang, memberi diskon, dan mencetak struk.",
+        title: "Antrean tidak berhenti",
+        description: "Kasir tetap bisa memindai barang, memberi diskon, dan mencetak struk.",
       },
       {
-        judul: "Sinkron otomatis",
-        desc: "Transaksi yang sempat tertahan dikirim berurutan begitu koneksi pulih.",
+        title: "Sinkron otomatis",
+        description: "Transaksi yang sempat tertahan dikirim berurutan begitu koneksi pulih.",
       },
       {
-        judul: "Tidak ada yang tertimpa",
-        desc: "Setiap transaksi punya penanda sendiri, jadi tidak ada data yang dobel saat sinkron.",
+        title: "Tidak ada yang tertimpa",
+        description: "Setiap transaksi punya penanda sendiri, jadi tidak ada data yang dobel saat sinkron.",
       },
     ],
     visual: "offline",
@@ -85,21 +85,21 @@ export const SOROTAN = [
   {
     id: "absensi",
     label: "Absensi karyawan",
-    judul: "Absen dari HP, rekapnya jadi sendiri",
-    paragraf:
+    title: "Absen dari HP, rekapnya jadi sendiri",
+    paragraph:
       "Karyawan tinggal buka aplikasi dan tekan absen masuk. Lokasinya terekam saat itu juga, dan rekap bulanan tidak perlu diketik ulang.",
-    poin: [
+    points: [
       {
-        judul: "Tanpa mesin absen",
-        desc: "Cukup pakai HP karyawan. Bisa dikunci ke radius outlet, atau lewat scan QR.",
+        title: "Tanpa mesin absen",
+        description: "Cukup pakai HP karyawan. Bisa dikunci ke radius outlet, atau lewat scan QR.",
       },
       {
-        judul: "Lembur terhitung",
-        desc: "Keterlambatan dan jam lembur dihitung dari jadwal shift yang Anda tentukan.",
+        title: "Lembur terhitung",
+        description: "Keterlambatan dan jam lembur dihitung dari jadwal shift yang Anda tentukan.",
       },
       {
-        judul: "Langsung ke gaji",
-        desc: "Hasil rekapnya langsung dipakai menghitung gaji, lengkap dengan slip gaji digital.",
+        title: "Langsung ke gaji",
+        description: "Hasil rekapnya langsung dipakai menghitung gaji, lengkap dengan slip gaji digital.",
       },
     ],
     visual: "absensi",
@@ -107,71 +107,71 @@ export const SOROTAN = [
   {
     id: "cabang",
     label: "Multi cabang",
-    judul: "Satu gudang pusat, semua cabang terlihat",
-    paragraf:
+    title: "Satu gudang pusat, semua cabang terlihat",
+    paragraph:
       "Kirim barang dari gudang ke outlet, atau dari outlet ke outlet. Setiap perpindahan tercatat: siapa yang mengirim, siapa yang menerima.",
-    poin: [
+    points: [
       {
-        judul: "Stok terpisah per lokasi",
-        desc: "Gudang dan toko punya angka stok sendiri-sendiri, dengan batas minimum masing-masing.",
+        title: "Stok terpisah per lokasi",
+        description: "Gudang dan toko punya angka stok sendiri-sendiri, dengan batas minimum masing-masing.",
       },
       {
-        judul: "Serah terima tercatat",
-        desc: "Barang dihitung saat dikirim dan saat diterima. Kalau ada selisih, langsung kelihatan.",
+        title: "Serah terima tercatat",
+        description: "Barang dihitung saat dikirim dan saat diterima. Kalau ada selisih, langsung kelihatan.",
       },
       {
-        judul: "Laporan gabungan",
-        desc: "Omzet dan laba semua cabang dalam satu tampilan, atau dipisah per outlet.",
+        title: "Laporan gabungan",
+        description: "Omzet dan laba semua cabang dalam satu tampilan, atau dipisah per outlet.",
       },
     ],
     visual: "cabang",
   },
 ] as const;
 
-export const UNTUK_SIAPA = [
+export const AUDIENCES = [
   {
     icon: "Store",
-    judul: "Toko retail & grosir",
-    desc: "Ribuan jenis barang, barcode, harga grosir bertingkat, dan stok yang tetap cocok walau toko sedang ramai.",
+    title: "Toko retail & grosir",
+    description: "Ribuan jenis barang, barcode, harga grosir bertingkat, dan stok yang tetap cocok walau toko sedang ramai.",
   },
   {
     icon: "CookingPot",
-    judul: "Kafe & restoran",
-    desc: "Pesanan per meja, dapur langsung dapat pesanannya, dan bahan baku berkurang mengikuti resep.",
+    title: "Kafe & restoran",
+    description: "Pesanan per meja, dapur langsung dapat pesanannya, dan bahan baku berkurang mengikuti resep.",
   },
   {
     icon: "Pill",
-    judul: "Apotek & toko obat",
-    desc: "Nomor batch, tanggal kedaluwarsa, dan pengingat sebelum obat lewat tanggalnya.",
+    title: "Apotek & toko obat",
+    description: "Nomor batch, tanggal kedaluwarsa, dan pengingat sebelum obat lewat tanggalnya.",
   },
   {
     icon: "Scissors",
-    judul: "Usaha jasa",
-    desc: "Salon, bengkel, laundry. Daftar layanan, tarif per teknisi, dan jadwal karyawan jadi satu.",
+    title: "Usaha jasa",
+    description: "Salon, bengkel, laundry. Daftar layanan, tarif per teknisi, dan jadwal karyawan jadi satu.",
   },
 ] as const;
 
-export const LANGKAH = [
+export const STEPS = [
   {
-    judul: "Buat akun",
-    desc: "Isi nama usaha dan email. Tanpa kartu kredit, tanpa pasang aplikasi apa pun.",
+    title: "Buat akun",
+    description: "Isi nama usaha dan email. Tanpa kartu kredit, tanpa pasang aplikasi apa pun.",
   },
   {
-    judul: "Masukkan barang dan karyawan",
-    desc: "Tarik daftar barang dari Excel, atau mulai dari beberapa barang dulu. Akun kasir ditambah seperlunya.",
+    title: "Masukkan barang dan karyawan",
+    description: "Tarik daftar barang dari Excel, atau mulai dari beberapa barang dulu. Akun kasir ditambah seperlunya.",
   },
   {
-    judul: "Mulai berjualan",
-    desc: "Transaksi pertama sudah masuk laporan hari itu juga. Sisanya jalan sendiri.",
+    title: "Mulai berjualan",
+    description: "Transaksi pertama sudah masuk laporan hari itu juga. Sisanya jalan sendiri.",
   },
 ] as const;
 
-export const PAKET = [
+export const PLANS = [
   {
-    nama: "Gratis",
-    desc: "Untuk satu outlet yang baru mulai merapikan catatan.",
-    harga: { jenis: "gratis" as const, label: "Gratis", catatan: "Selamanya" },
-    fitur: [
+    name: "Gratis",
+    description: "Untuk satu outlet yang baru mulai merapikan catatan.",
+    price: { type: "free" as const, label: "Gratis", note: "Selamanya" },
+    features: [
       "1 outlet, 1 akun kasir",
       "Kasir dan stok dasar",
       "Laporan penjualan harian",
@@ -181,18 +181,18 @@ export const PAKET = [
     cta: "Mulai gratis",
   },
   {
-    nama: "Pro",
-    desc: "Untuk usaha yang mulai berkembang dan butuh laporan lebih lengkap.",
-    harga: {
-      jenis: "berbayar" as const,
-      nominal: "85.000",
-      satuan: "/bulan",
-      coret: "149.000",
-      catatan: "Gratis 30 hari, tanpa kartu kredit",
+    name: "Pro",
+    description: "Untuk usaha yang mulai berkembang dan butuh laporan lebih lengkap.",
+    price: {
+      type: "paid" as const,
+      amount: "85.000",
+      unit: "/bulan",
+      strikethrough: "149.000",
+      note: "Gratis 30 hari, tanpa kartu kredit",
     },
-    sorot: true,
+    highlighted: true,
     label: "Paling banyak dipakai",
-    fitur: [
+    features: [
       "Sampai 3 outlet",
       "Mode offline penuh",
       "Member dan poin loyalitas",
@@ -203,10 +203,10 @@ export const PAKET = [
     cta: "Coba Pro 30 hari",
   },
   {
-    nama: "Enterprise",
-    desc: "Untuk usaha bercabang yang juga mengurus karyawan dan keuangan.",
-    harga: { jenis: "custom" as const, label: "Custom", catatan: "Disesuaikan jumlah outlet" },
-    fitur: [
+    name: "Enterprise",
+    description: "Untuk usaha bercabang yang juga mengurus karyawan dan keuangan.",
+    price: { type: "custom" as const, label: "Custom", note: "Disesuaikan jumlah outlet" },
+    features: [
       "Outlet tanpa batas",
       "Absensi, shift, dan penggajian",
       "Pembukuan dan jurnal keuangan",

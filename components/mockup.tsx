@@ -7,8 +7,8 @@ import { Check, MapPin, WifiOff } from "lucide-react";
  * Semuanya dekoratif — teksnya diulang dalam naskah di sekitarnya.
  */
 
-const BATANG = [42, 61, 48, 74, 55, 88, 70];
-const HARI = ["S", "S", "R", "K", "J", "S", "M"];
+const BARS = [42, 61, 48, 74, 55, 88, 70];
+const DAYS = ["S", "S", "R", "K", "J", "S", "M"];
 
 export function MockupDashboard() {
   return (
@@ -25,14 +25,14 @@ export function MockupDashboard() {
 
       <div className="grid gap-px bg-line sm:grid-cols-3">
         {[
-          { label: "Omzet hari ini", nilai: "Rp 4.820.000", delta: "+12,4%" },
-          { label: "Transaksi", nilai: "128", delta: "+9 vs kemarin" },
-          { label: "Stok menipis", nilai: "6 barang", delta: "perlu dipesan" },
-        ].map((k) => (
-          <div key={k.label} className="bg-paper px-5 py-4">
-            <p className="text-[0.6875rem] uppercase tracking-wider text-ink-3">{k.label}</p>
-            <p className="tnum mt-1.5 text-lg font-semibold text-ink">{k.nilai}</p>
-            <p className="mt-0.5 text-xs text-ink-3">{k.delta}</p>
+          { label: "Omzet hari ini", value: "Rp 4.820.000", delta: "+12,4%" },
+          { label: "Transaksi", value: "128", delta: "+9 vs kemarin" },
+          { label: "Stok menipis", value: "6 barang", delta: "perlu dipesan" },
+        ].map((stat) => (
+          <div key={stat.label} className="bg-paper px-5 py-4">
+            <p className="text-[0.6875rem] uppercase tracking-wider text-ink-3">{stat.label}</p>
+            <p className="tnum mt-1.5 text-lg font-semibold text-ink">{stat.value}</p>
+            <p className="mt-0.5 text-xs text-ink-3">{stat.delta}</p>
           </div>
         ))}
       </div>
@@ -45,15 +45,15 @@ export function MockupDashboard() {
         {/* Tiap kolom diberi tinggi pasti lewat flex, supaya tinggi batang
             dalam persen punya acuan untuk dihitung. */}
         <div className="flex h-28 items-stretch gap-1.5 sm:gap-2.5">
-          {BATANG.map((t, i) => (
+          {BARS.map((height, i) => (
             <div key={i} className="flex flex-1 flex-col">
               <div className="flex flex-1 items-end">
                 <div
-                  className={`mx-auto w-full max-w-24 rounded-t-sm ${i === BATANG.length - 2 ? "bg-accent" : "bg-accent/25"}`}
-                  style={{ height: `${t}%` }}
+                  className={`mx-auto w-full max-w-24 rounded-t-sm ${i === BARS.length - 2 ? "bg-accent" : "bg-accent/25"}`}
+                  style={{ height: `${height}%` }}
                 />
               </div>
-              <span className="mt-2 text-center text-[0.625rem] text-ink-3">{HARI[i]}</span>
+              <span className="mt-2 text-center text-[0.625rem] text-ink-3">{DAYS[i]}</span>
             </div>
           ))}
         </div>
@@ -73,14 +73,14 @@ export function MockupOffline() {
 
       <ul className="mt-4 space-y-px overflow-hidden rounded-lg border border-line">
         {[
-          { kode: "TRX-0912", jumlah: "Rp 128.000", status: "tersimpan" },
-          { kode: "TRX-0913", jumlah: "Rp 64.500", status: "tersimpan" },
-          { kode: "TRX-0914", jumlah: "Rp 215.000", status: "tersimpan" },
-        ].map((t) => (
-          <li key={t.kode} className="flex items-center gap-3 border-b border-line bg-paper px-3.5 py-3 last:border-b-0">
+          { code: "TRX-0912", amount: "Rp 128.000", status: "tersimpan" },
+          { code: "TRX-0913", amount: "Rp 64.500", status: "tersimpan" },
+          { code: "TRX-0914", amount: "Rp 215.000", status: "tersimpan" },
+        ].map((transaction) => (
+          <li key={transaction.code} className="flex items-center gap-3 border-b border-line bg-paper px-3.5 py-3 last:border-b-0">
             <Check className="h-4 w-4 shrink-0 text-accent" />
-            <span className="tnum text-sm text-ink">{t.kode}</span>
-            <span className="tnum ml-auto text-sm text-ink-2">{t.jumlah}</span>
+            <span className="tnum text-sm text-ink">{transaction.code}</span>
+            <span className="tnum ml-auto text-sm text-ink-2">{transaction.amount}</span>
           </li>
         ))}
       </ul>
@@ -92,7 +92,7 @@ export function MockupOffline() {
   );
 }
 
-export function MockupAbsensi() {
+export function MockupAttendance() {
   return (
     <div aria-hidden="true" className="rounded-xl border border-line bg-paper p-5">
       <div className="flex items-start justify-between gap-4 border-b border-line pb-4">
@@ -112,13 +112,13 @@ export function MockupAbsensi() {
 
       <dl className="mt-5 grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-line bg-line">
         {[
-          { k: "Hadir", v: "22 hari" },
-          { k: "Telat", v: "1 hari" },
-          { k: "Lembur", v: "6 jam" },
-        ].map((s) => (
-          <div key={s.k} className="bg-paper px-3 py-3 text-center">
-            <dt className="text-[0.6875rem] uppercase tracking-wider text-ink-3">{s.k}</dt>
-            <dd className="tnum mt-1 text-sm font-semibold text-ink">{s.v}</dd>
+          { label: "Hadir", value: "22 hari" },
+          { label: "Telat", value: "1 hari" },
+          { label: "Lembur", value: "6 jam" },
+        ].map((stat) => (
+          <div key={stat.label} className="bg-paper px-3 py-3 text-center">
+            <dt className="text-[0.6875rem] uppercase tracking-wider text-ink-3">{stat.label}</dt>
+            <dd className="tnum mt-1 text-sm font-semibold text-ink">{stat.value}</dd>
           </div>
         ))}
       </dl>
@@ -126,28 +126,28 @@ export function MockupAbsensi() {
   );
 }
 
-export function MockupCabang() {
-  const cabang = [
-    { nama: "Pusat — Gudang", stok: "1.284", bar: 100 },
-    { nama: "Outlet Sungai Raya", stok: "312", bar: 42 },
-    { nama: "Outlet Ahmad Yani", stok: "268", bar: 34 },
-    { nama: "Outlet Rasau", stok: "96", bar: 14 },
+export function MockupBranches() {
+  const branches = [
+    { name: "Pusat — Gudang", stock: "1.284", width: 100 },
+    { name: "Outlet Sungai Raya", stock: "312", width: 42 },
+    { name: "Outlet Ahmad Yani", stock: "268", width: 34 },
+    { name: "Outlet Rasau", stock: "96", width: 14 },
   ];
 
   return (
     <div aria-hidden="true" className="rounded-xl border border-line bg-paper p-5">
       <p className="text-sm font-medium text-ink">Sebaran stok · Beras Premium 5kg</p>
       <ul className="mt-4 space-y-3.5">
-        {cabang.map((c, i) => (
-          <li key={c.nama}>
+        {branches.map((branch, i) => (
+          <li key={branch.name}>
             <div className="mb-1.5 flex items-baseline justify-between gap-3">
-              <span className="text-sm text-ink-2">{c.nama}</span>
-              <span className="tnum text-sm font-medium text-ink">{c.stok}</span>
+              <span className="text-sm text-ink-2">{branch.name}</span>
+              <span className="tnum text-sm font-medium text-ink">{branch.stock}</span>
             </div>
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-paper-2">
               <div
                 className={`h-full rounded-full ${i === 0 ? "bg-ink" : "bg-accent/45"}`}
-                style={{ width: `${c.bar}%` }}
+                style={{ width: `${branch.width}%` }}
               />
             </div>
           </li>

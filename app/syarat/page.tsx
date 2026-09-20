@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import LegalShell, { type LegalSection } from "@/components/legal-shell";
 import { SITE } from "@/lib/site";
 
-const DIPERBARUI = "15 September 2026";
+const LAST_UPDATED = "15 September 2026";
 
 export const metadata: Metadata = {
   title: "Syarat & Ketentuan",
@@ -265,12 +265,12 @@ const SECTIONS: LegalSection[] = [
   },
 ];
 
-export default function SyaratPage() {
+export default function TermsPage() {
   return (
     <LegalShell
-      judul="Syarat & Ketentuan"
-      ringkasan="Hak dan kewajiban yang berlaku saat Anda menggunakan Hifloo, ditulis sejelas mungkin tanpa bahasa berbelit."
-      diperbarui={DIPERBARUI}
+      title="Syarat & Ketentuan"
+      summary="Hak dan kewajiban yang berlaku saat Anda menggunakan Hifloo, ditulis sejelas mungkin tanpa bahasa berbelit."
+      lastUpdated={LAST_UPDATED}
       sections={SECTIONS}
     />
   );

@@ -2,31 +2,31 @@ import DaftarDialog from "@/components/daftar-dialog";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import {
-  AjakanAkhir,
-  Fitur,
-  Harga,
+  Audiences,
+  Faq,
+  Features,
+  FinalCta,
   Hero,
-  Langkah,
-  Masalah,
-  Sorotan,
-  TanyaJawab,
-  UntukSiapa,
+  Highlights,
+  Pricing,
+  Problems,
+  Steps,
 } from "@/components/sections";
 
-export default function Beranda() {
+export default function HomePage() {
   return (
     <>
       <SiteHeader />
       <main id="konten">
         <Hero />
-        <Masalah />
-        <Fitur />
-        <Sorotan />
-        <UntukSiapa />
-        <Langkah />
-        <Harga />
-        <TanyaJawab />
-        <AjakanAkhir />
+        <Problems />
+        <Features />
+        <Highlights />
+        <Audiences />
+        <Steps />
+        <Pricing />
+        <Faq />
+        <FinalCta />
       </main>
       <SiteFooter />
       <DaftarDialog />

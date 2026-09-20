@@ -9,14 +9,14 @@ export type LegalSection = {
 };
 
 type Props = {
-  judul: string;
-  ringkasan: string;
-  diperbarui: string;
+  title: string;
+  summary: string;
+  lastUpdated: string;
   sections: LegalSection[];
 };
 
 /** Kerangka bersama untuk halaman hukum: navigasi, daftar isi, dan isi teks. */
-export default function LegalShell({ judul, ringkasan, diperbarui, sections }: Props) {
+export default function LegalShell({ title, summary, lastUpdated, sections }: Props) {
   return (
     <div className="min-h-screen bg-paper">
       <nav className="sticky top-0 z-40 border-b border-line bg-paper/85 backdrop-blur-md">
@@ -38,9 +38,9 @@ export default function LegalShell({ judul, ringkasan, diperbarui, sections }: P
       <header className="border-b border-line bg-paper-2">
         <div className="mx-auto max-w-4xl px-5 py-14 sm:px-8 sm:py-20">
           <p className="eyebrow">Ketentuan</p>
-          <h1 className="mt-5 text-title font-semibold">{judul}</h1>
-          <p className="mt-4 max-w-prose text-lg leading-relaxed text-ink-2">{ringkasan}</p>
-          <p className="mt-6 text-sm text-ink-3">Terakhir diperbarui: {diperbarui}</p>
+          <h1 className="mt-5 text-title font-semibold">{title}</h1>
+          <p className="mt-4 max-w-prose text-lg leading-relaxed text-ink-2">{summary}</p>
+          <p className="mt-6 text-sm text-ink-3">Terakhir diperbarui: {lastUpdated}</p>
         </div>
       </header>
 
@@ -52,13 +52,13 @@ export default function LegalShell({ judul, ringkasan, diperbarui, sections }: P
                 Daftar isi
               </h2>
               <ul className="mt-4 space-y-2.5">
-                {sections.map((s) => (
-                  <li key={s.id}>
+                {sections.map((section) => (
+                  <li key={section.id}>
                     <a
-                      href={`#${s.id}`}
+                      href={`#${section.id}`}
                       className="block text-sm leading-snug text-ink-3 transition-colors hover:text-accent"
                     >
-                      {s.title}
+                      {section.title}
                     </a>
                   </li>
                 ))}
@@ -77,10 +77,10 @@ export default function LegalShell({ judul, ringkasan, diperbarui, sections }: P
               [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5
             "
           >
-            {sections.map((s) => (
-              <section key={s.id} id={s.id} className="scroll-mt-24">
-                <h2 className="mb-4 text-xl font-semibold tracking-tight sm:text-2xl">{s.title}</h2>
-                {s.body}
+            {sections.map((section) => (
+              <section key={section.id} id={section.id} className="scroll-mt-24">
+                <h2 className="mb-4 text-xl font-semibold tracking-tight sm:text-2xl">{section.title}</h2>
+                {section.body}
               </section>
             ))}
           </div>

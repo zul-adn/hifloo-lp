@@ -2,7 +2,7 @@ import { Mail, MapPin, MessageCircle } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 /** lucide-react tidak lagi menyertakan ikon merek, jadi digambar sendiri. */
-function IkonInstagram({ className }: { className?: string }) {
+function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -21,10 +21,10 @@ function IkonInstagram({ className }: { className?: string }) {
   );
 }
 
-const KOLOM = [
+const COLUMNS = [
   {
-    judul: "Produk",
-    tautan: [
+    title: "Produk",
+    links: [
       { label: "Fitur", href: "#fitur" },
       { label: "Harga", href: "#harga" },
       { label: "FAQ", href: "#faq" },
@@ -32,8 +32,8 @@ const KOLOM = [
     ],
   },
   {
-    judul: "Kemampuan",
-    tautan: [
+    title: "Kemampuan",
+    links: [
       { label: "Kasir offline", href: "#offline" },
       { label: "Absensi karyawan", href: "#absensi" },
       { label: "Multi cabang", href: "#cabang" },
@@ -41,9 +41,9 @@ const KOLOM = [
     ],
   },
   {
-    judul: "Ketentuan",
-    tautan: [
-      { label: "Kebijakan Privasi", href: "/privasi" },
+    title: "Ketentuan",
+    links: [
+      { label: "Kebijakan Privasi", href: "/privacy" },
       { label: "Syarat & Ketentuan", href: "/syarat" },
     ],
   },
@@ -92,26 +92,26 @@ export default function SiteFooter() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 text-ink-2 transition-colors hover:text-ink"
                 >
-                  <IkonInstagram className="h-4 w-4 shrink-0 text-ink-3" />
+                  <InstagramIcon className="h-4 w-4 shrink-0 text-ink-3" />
                   @hifloo_id
                 </a>
               </li>
             </ul>
           </div>
 
-          {KOLOM.map((k) => (
-            <nav key={k.judul} aria-label={k.judul}>
+          {COLUMNS.map((column) => (
+            <nav key={column.title} aria-label={column.title}>
               <h2 className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-ink-3">
-                {k.judul}
+                {column.title}
               </h2>
               <ul className="mt-5 space-y-3">
-                {k.tautan.map((t) => (
-                  <li key={t.label}>
+                {column.links.map((link) => (
+                  <li key={link.label}>
                     <a
-                      href={t.href}
+                      href={link.href}
                       className="text-sm text-ink-2 transition-colors hover:text-ink"
                     >
-                      {t.label}
+                      {link.label}
                     </a>
                   </li>
                 ))}

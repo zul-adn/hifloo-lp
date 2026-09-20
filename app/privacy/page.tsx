@@ -452,7 +452,7 @@ const SECTIONS: LegalSection[] = [
   },
 ];
 
-const KONTAK: LegalSection = {
+const CONTACT: LegalSection = {
   id: "kontak",
   title: "14. Hubungi Kami",
   body: (
@@ -481,10 +481,10 @@ const KONTAK: LegalSection = {
 export default function PrivacyPage() {
   return (
     <LegalShell
-      judul="Kebijakan Privasi"
-      ringkasan="Kami menjelaskan secara terbuka data apa yang dikumpulkan aplikasi Hifloo, untuk apa data itu dipakai, dan bagaimana Anda bisa mengendalikannya."
-      diperbarui={LAST_UPDATED}
-      sections={[...SECTIONS, KONTAK]}
+      title="Kebijakan Privasi"
+      summary="Kami menjelaskan secara terbuka data apa yang dikumpulkan aplikasi Hifloo, untuk apa data itu dipakai, dan bagaimana Anda bisa mengendalikannya."
+      lastUpdated={LAST_UPDATED}
+      sections={[...SECTIONS, CONTACT]}
     />
   );
 }
