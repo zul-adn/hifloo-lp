@@ -1,4 +1,5 @@
 import DaftarDialog from "@/components/daftar-dialog";
+import SignupDeeplink from "@/components/signup-deeplink";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import {
@@ -29,6 +30,7 @@ export default function HomePage() {
         <FinalCta />
       </main>
       <SiteFooter />
+      <SignupDeeplink />
       <DaftarDialog />
     </>
   );
