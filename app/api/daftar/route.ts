@@ -106,10 +106,22 @@ export async function POST(request: Request) {
     });
 
     if (!upstream.ok) {
-      // Isi balasan hulu tidak diteruskan ke browser — bisa memuat detail
-      // internal. Cukup dicatat di log server.
-      console.error("[daftar] webhook membalas", upstream.status, await upstream.text().catch(() => ""));
-      return NextResponse.json({ message: GENERIC_ERROR }, { status: 502 });
+      const text = await upstream.text().catch(() => "");
+      console.error("[daftar] webhook membalas", upstream.status, text);
+      // Teruskan HANYA pesan yang aman & pendek (mis. "Email sudah terdaftar").
+      // Badan balasan bisa memuat detail internal, jadi jangan diteruskan mentah.
+      let message = GENERIC_ERROR;
+      try {
+        const parsed = JSON.parse(text);
+        const candidate = parsed?.message || parsed?.error;
+        if (typeof candidate === "string" && candidate.length > 0 && candidate.length <= 200) {
+          message = candidate;
+        }
+      } catch {
+        // bukan JSON — pakai pesan umum
+      }
+      const status = upstream.status >= 400 && upstream.status < 500 ? upstream.status : 502;
+      return NextResponse.json({ message }, { status });
     }
 
     return NextResponse.json({ ok: true });
