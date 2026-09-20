@@ -105,20 +105,24 @@ export async function POST(request: Request) {
       signal: controller,
     });
 
-    if (!upstream.ok) {
-      const text = await upstream.text().catch(() => "");
+    const text = await upstream.text().catch(() => "");
+    let body: Record<string, unknown> = {};
+    try {
+      body = JSON.parse(text) as Record<string, unknown>;
+    } catch {
+      // bukan JSON — dianggap tanpa isi
+    }
+
+    // Gagal bila: status non-2xx ATAU webhook membalas `ok: false` (n8n sering
+    // membalas 200 walau isinya error, jadi jangan hanya percaya status HTTP).
+    const failed = !upstream.ok || body.ok === false;
+    if (failed) {
       console.error("[daftar] webhook membalas", upstream.status, text);
       // Teruskan HANYA pesan yang aman & pendek (mis. "Email sudah terdaftar").
-      // Badan balasan bisa memuat detail internal, jadi jangan diteruskan mentah.
       let message = GENERIC_ERROR;
-      try {
-        const parsed = JSON.parse(text);
-        const candidate = parsed?.message || parsed?.error;
-        if (typeof candidate === "string" && candidate.length > 0 && candidate.length <= 200) {
-          message = candidate;
-        }
-      } catch {
-        // bukan JSON — pakai pesan umum
+      const candidate = body?.message || body?.error;
+      if (typeof candidate === "string" && candidate.length > 0 && candidate.length <= 200) {
+        message = candidate;
       }
       const status = upstream.status >= 400 && upstream.status < 500 ? upstream.status : 502;
       return NextResponse.json({ message }, { status });
