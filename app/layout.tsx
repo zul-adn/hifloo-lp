@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Playwrite_DE_SAS } from "next/font/google";
 import Script from "next/script";
 
+import AnalyticsTracker from "@/components/analytics-tracker";
 import { FAQ } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import "./globals.css";
@@ -192,6 +193,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Script id="ga" strategy="afterInteractive">
               {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`}
             </Script>
+            <AnalyticsTracker />
           </>
         )}
       </body>

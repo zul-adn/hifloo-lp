@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Check, X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 import { SIGNUP_EVENT } from "./daftar-button";
 
 type Status = "idle" | "submitting" | "success";
@@ -42,8 +43,7 @@ export default function DaftarDialog() {
       const data = (await res.json().catch(() => ({}))) as { message?: string };
       if (!res.ok) throw new Error(data.message || "Pendaftaran gagal. Coba lagi sebentar lagi.");
 
-      const gtag = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
-      gtag?.("event", "signup_success");
+      trackEvent("signup_success");
 
       setForm(emptyForm);
       setStatus("success");

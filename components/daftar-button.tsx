@@ -2,6 +2,8 @@
 
 import type { ReactNode } from "react";
 
+import { trackEvent } from "@/lib/analytics";
+
 export const SIGNUP_EVENT = "hifloo:signup";
 
 export function openSignup() {
@@ -24,8 +26,7 @@ export default function DaftarButton({ children, className = "", source, onClick
       className={className}
       onClick={() => {
         onClick?.();
-        const gtag = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
-        gtag?.("event", "open_signup_form", { source });
+        trackEvent("open_signup_form", { source });
         openSignup();
       }}
     >
