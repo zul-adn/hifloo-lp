@@ -93,13 +93,14 @@ const SECTIONS: LegalSection[] = [
     body: (
       <>
         <p>
-          Paket Gratis tersedia tanpa batas waktu dengan kapasitas yang terbatas sebagaimana
+          Paket Super Basic tersedia gratis tanpa batas waktu dengan kapasitas yang terbatas sebagaimana
           tercantum di halaman harga. Paket berbayar memiliki masa uji coba 30 hari tanpa memerlukan
           kartu kredit.
         </p>
         <p>
           Setelah masa uji coba berakhir dan tidak ada pembayaran, akun otomatis turun ke paket
-          Gratis. Data Anda tidak dihapus, tetapi fitur di luar paket Gratis berhenti dapat diakses.
+          Super Basic. Data Anda tidak dihapus, tetapi fitur di luar paket Super Basic berhenti dapat
+          diakses.
         </p>
         <p>
           Kami dapat mengubah harga atau isi paket. Perubahan diberitahukan paling lambat 30 hari

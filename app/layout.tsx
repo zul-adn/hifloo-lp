@@ -142,17 +142,24 @@ const STRUCTURED_DATA = {
       offers: [
         {
           "@type": "Offer",
-          name: "Gratis",
+          name: "Super Basic",
           price: "0",
           priceCurrency: "IDR",
-          description: "Satu outlet, kasir dan stok dasar, laporan harian.",
+          description: "Satu outlet, satu terminal kasir, maksimal 1.000 transaksi per bulan, laporan harian.",
+        },
+        {
+          "@type": "Offer",
+          name: "Basic",
+          price: "85000",
+          priceCurrency: "IDR",
+          description: "Satu outlet, dua terminal kasir, transaksi tanpa batas, laporan harian, CRM, promo, inventori, manajemen karyawan. Per bulan.",
         },
         {
           "@type": "Offer",
           name: "Pro",
-          price: "85000",
+          price: "149000",
           priceCurrency: "IDR",
-          description: "Sampai tiga outlet, mode offline penuh, laporan lengkap. Per bulan.",
+          description: "Sampai tiga outlet, laporan lengkap, inventori, manajemen karyawan. Per bulan.",
         },
       ],
     },

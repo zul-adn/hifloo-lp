@@ -168,21 +168,20 @@ export const STEPS = [
 
 export const PLANS = [
   {
-    name: "Gratis",
+    name: "Super Basic",
     description: "Untuk satu outlet yang baru mulai merapikan catatan.",
     price: { type: "free" as const, label: "Gratis", note: "Selamanya" },
     features: [
-      "1 outlet, 1 akun kasir",
-      "Kasir dan stok dasar",
+      "1 outlet, 1 terminal kasir",
+      "Maksimal 1.000 transaksi per bulan",
       "Laporan penjualan harian",
-      "Aplikasi Android dan dashboard web",
-      "Dibantu lewat WhatsApp",
+      "Aplikasi kasir Android",
     ],
     cta: "Mulai gratis",
   },
   {
-    name: "Pro",
-    description: "Untuk usaha yang mulai berkembang dan butuh laporan lebih lengkap.",
+    name: "Basic",
+    description: "Untuk outlet yang ramai dan mulai mengurus pelanggan serta karyawan.",
     price: {
       type: "paid" as const,
       amount: "85.000",
@@ -192,26 +191,44 @@ export const PLANS = [
     },
     highlighted: true,
     label: "Paling banyak dipakai",
+    badge: "Siap jualan",
     features: [
-      "Sampai 3 outlet",
-      "Mode offline penuh",
-      "Member dan poin loyalitas",
-      "Supplier, pembelian, dan retur barang",
-      "Diskon, promo, dan paket bundling",
-      "Laporan lengkap (Excel & PDF)",
+      "1 outlet, 2 terminal kasir",
+      "Transaksi tanpa batas",
+      "Laporan penjualan harian",
+      "CRM dan data pelanggan",
+      "Diskon dan promo",
+      "Inventori dan stok",
+      "Manajemen karyawan",
+    ],
+    cta: "Coba Basic 30 hari",
+  },
+  {
+    name: "Pro",
+    description: "Untuk usaha dengan beberapa outlet yang butuh laporan lebih dalam.",
+    price: {
+      type: "paid" as const,
+      amount: "149.000",
+      unit: "/bulan",
+      note: "Gratis 30 hari, tanpa kartu kredit",
+    },
+    features: [
+      "Sampai 3 outlet, 2 terminal kasir per outlet",
+      "Semua fitur Basic",
+      "Laporan lengkap",
     ],
     cta: "Coba Pro 30 hari",
   },
   {
     name: "Enterprise",
-    description: "Untuk usaha bercabang yang juga mengurus karyawan dan keuangan.",
+    description: "Untuk usaha bercabang yang butuh semua modul dalam satu sistem.",
     price: { type: "custom" as const, label: "Custom", note: "Disesuaikan jumlah outlet" },
     features: [
-      "Outlet tanpa batas",
-      "Absensi, shift, dan penggajian",
-      "Pembukuan dan jurnal keuangan",
-      "CRM dan riwayat pelanggan",
-      "Multi gudang dan transfer stok",
+      "Semua fitur, outlet tanpa batas",
+      "Gudang dan transfer stok",
+      "Pengadaan dan pembelian ke supplier",
+      "Layar dapur (KDS) dan stok bahan baku",
+      "Keuangan dan pembukuan",
       "Didampingi sampai bisa jalan sendiri",
     ],
     cta: "Bicara dengan kami",
@@ -220,12 +237,12 @@ export const PLANS = [
 
 export const FAQ = [
   {
-    q: "Apakah paket Gratis benar-benar gratis?",
-    a: "Ya. Paket Gratis tidak ada batas waktunya dan tidak meminta kartu kredit. Yang dibatasi cuma kapasitasnya: satu outlet, satu akun kasir, dan laporan harian. Selama itu masih cukup, Anda tidak perlu bayar apa pun.",
+    q: "Apakah paket Super Basic benar-benar gratis?",
+    a: "Ya. Paket Super Basic tidak ada batas waktunya dan tidak meminta kartu kredit. Yang dibatasi cuma kapasitasnya: satu outlet, satu terminal kasir, maksimal 1.000 transaksi per bulan, dan laporan harian. Selama itu masih cukup, Anda tidak perlu bayar apa pun.",
   },
   {
-    q: "Apa bedanya Pro dan Enterprise?",
-    a: "Pro cocok kalau outlet Anda paling banyak tiga dan butuh fitur penjualan yang lengkap: member, supplier, promo, dan laporan yang lebih dalam. Enterprise dipakai kalau outlet sudah banyak dan Anda juga mengurus absensi, gaji, pembukuan, dan data pelanggan. Harganya menyesuaikan jumlah outlet dan fitur yang dipakai.",
+    q: "Apa bedanya Basic, Pro, dan Enterprise?",
+    a: "Basic untuk satu outlet dengan dua terminal kasir: transaksi tanpa batas, laporan penjualan harian, CRM, promo, inventori, dan manajemen karyawan. Pro menambah sampai tiga outlet dan laporan lengkap. Enterprise membuka semua modul, termasuk layar dapur (KDS), gudang, pengadaan, stok bahan baku, dan keuangan. Harga Enterprise menyesuaikan jumlah outlet dan fitur yang dipakai.",
   },
   {
     q: "Kasir tetap bisa dipakai saat internet mati?",
@@ -245,6 +262,6 @@ export const FAQ = [
   },
   {
     q: "Kalau nanti saya berhenti berlangganan, data saya hilang?",
-    a: "Tidak hilang. Seluruh data transaksi dan barang bisa Anda unduh ke Excel kapan saja, termasuk sebelum berhenti. Akun yang berhenti berlangganan turun ke paket Gratis, bukan dihapus.",
+    a: "Tidak hilang. Seluruh data transaksi dan barang bisa Anda unduh ke Excel kapan saja, termasuk sebelum berhenti. Akun yang berhenti berlangganan turun ke paket Super Basic yang gratis, bukan dihapus.",
   },
 ] as const;
