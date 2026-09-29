@@ -17,6 +17,7 @@ import {
 import { AUDIENCES, FAQ, FEATURES, HIGHLIGHTS, PLANS, PROBLEMS, STEPS } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import DaftarButton from "./daftar-button";
+import PricingCarousel from "./pricing-carousel";
 import Reveal from "./reveal";
 import { MockupAttendance, MockupBranches, MockupDashboard, MockupOffline } from "./mockup";
 
@@ -270,102 +271,128 @@ export function Pricing() {
       <div className="shell">
         <Reveal className="max-w-prose">
           <p className="eyebrow">Harga</p>
-          <h2 className="mt-5 text-title font-semibold">Harga terbuka, tanpa biaya siluman</h2>
+          <h2 className="mt-5 text-title font-semibold">Harga terbuka, tanpa biaya tersembunyi</h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-2">
             Bisa pindah paket kapan saja. Semua paket sudah termasuk pembaruan fitur dan bantuan
             lewat WhatsApp.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {PLANS.map((plan, i) => {
-            const highlighted = "highlighted" in plan && plan.highlighted;
-            return (
-              <Reveal
-                key={plan.name}
-                delay={i * 80}
-                className={`flex h-full flex-col rounded-xl border p-7 ${
-                  highlighted ? "border-ink bg-ink text-paper/80" : "border-line bg-paper"
-                }`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className={`font-semibold ${highlighted ? "text-paper" : "text-ink"}`}>{plan.name}</h3>
-                  {"label" in plan && plan.label && (
-                    <span className="rounded-full bg-paper/15 px-2.5 py-1 text-[0.6875rem] font-medium text-paper">
-                      {plan.label}
-                    </span>
-                  )}
-                </div>
-                <p className={`mt-1.5 text-sm ${highlighted ? "text-paper/60" : "text-ink-3"}`}>{plan.description}</p>
-
-                <div className="mt-7">
-                  {plan.price.type === "paid" ? (
-                    <>
-                      <p className="flex items-baseline gap-1.5">
-                        <span className={`tnum text-4xl font-semibold ${highlighted ? "text-paper" : "text-ink"}`}>
-                          Rp&nbsp;{plan.price.amount}
-                        </span>
-                        <span className={`text-sm ${highlighted ? "text-paper/60" : "text-ink-3"}`}>
-                          {plan.price.unit}
-                        </span>
-                      </p>
-                      <p className={`mt-1.5 text-xs ${highlighted ? "text-paper/60" : "text-ink-3"}`}>
-                        <s className="tnum">Rp&nbsp;{plan.price.strikethrough}</s> · {plan.price.note}
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p className={`text-4xl font-semibold ${highlighted ? "text-paper" : "text-ink"}`}>
-                        {plan.price.label}
-                      </p>
-                      <p className={`mt-1.5 text-xs ${highlighted ? "text-paper/60" : "text-ink-3"}`}>
-                        {plan.price.note}
-                      </p>
-                    </>
-                  )}
-                </div>
-
-                <ul className={`mt-7 space-y-3 border-t pt-7 ${highlighted ? "border-paper/15" : "border-line"}`}>
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex gap-3 text-sm leading-relaxed">
-                      <Check
-                        className={`mt-0.5 h-4 w-4 shrink-0 ${highlighted ? "text-paper" : "text-accent"}`}
+        {/* Satu Reveal untuk seluruh deret: kartu yang masih di luar area geser
+            tidak pernah "masuk viewport", jadi Reveal per kartu akan membuatnya
+            tetap tak terlihat sampai digeser. */}
+        <Reveal className="mt-14">
+            <PricingCarousel>
+            {PLANS.map((plan) => {
+              const highlighted = "highlighted" in plan && plan.highlighted;
+              return (
+                <div
+                  key={plan.name}
+                  // Kartu unggulan lebih lebar dan lebih tinggi: kartu lain diberi
+                  // margin vertikal, jadi yang ini menjulur di atas dan bawahnya.
+                  className={`flex shrink-0 snap-start flex-col rounded-xl border p-7 ${
+                    highlighted
+                      ? "w-[88%] border-accent bg-gradient-to-b from-[#0B2B47] to-ink text-paper/80 shadow-[0_24px_60px_-16px_rgba(6,112,196,0.55)] ring-1 ring-accent/60 sm:w-[400px]"
+                      : "my-6 w-[85%] border-line bg-paper sm:w-[340px]"
+                  }`}
+                >
+                  {"badge" in plan && plan.badge && (
+                    // Pita yang keluar 8px dari tepi kiri kartu. Segitiga gelap di
+                    // bawahnya adalah lipatan yang "masuk" ke balik kartu.
+                    <div className="relative -ml-[36px] mb-5 self-start">
+                      <span className="block bg-accent py-1.5 pl-[36px] pr-6 text-xs font-semibold text-paper [clip-path:polygon(0_0,100%_0,calc(100%-10px)_50%,100%_100%,0_100%)]">
+                        {plan.badge}
+                      </span>
+                      <span
+                        className="absolute left-0 top-full border-l-8 border-t-8 border-l-transparent border-t-[#044f8a]"
                         aria-hidden="true"
-                        strokeWidth={2.5}
                       />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* mt-auto menekan tombol ke dasar kartu supaya sejajar antar paket. */}
-                <div className="mt-auto pt-8">
-                  {plan.price.type === "custom" ? (
-                    <a
-                      href={SITE.whatsapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block rounded-lg border border-line py-3 text-center text-sm font-semibold text-ink transition-colors hover:border-ink-3"
-                    >
-                      {plan.cta}
-                    </a>
-                  ) : (
-                    <DaftarButton
-                      source={`pricing-${plan.name.toLowerCase()}`}
-                      className={`w-full rounded-lg py-3 text-sm font-semibold transition-colors ${
-                        highlighted
-                          ? "bg-paper text-ink hover:bg-paper/90"
-                          : "bg-accent text-paper hover:bg-[#055a9f]"
-                      }`}
-                    >
-                      {plan.cta}
-                    </DaftarButton>
+                    </div>
                   )}
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className={`font-semibold ${highlighted ? "text-paper" : "text-ink"}`}>{plan.name}</h3>
+                    {"label" in plan && plan.label && (
+                      <span className="rounded-full bg-paper/15 px-2.5 py-1 text-[0.6875rem] font-medium text-paper">
+                        {plan.label}
+                      </span>
+                    )}
+                  </div>
+                  <p className={`mt-1.5 text-sm ${highlighted ? "text-paper/60" : "text-ink-3"}`}>{plan.description}</p>
+
+                  <div className="mt-7">
+                    {plan.price.type === "paid" ? (
+                      <>
+                        <p className="flex items-baseline gap-1.5">
+                          <span className={`tnum font-semibold ${highlighted ? "text-5xl text-paper" : "text-4xl text-ink"}`}>
+                            Rp&nbsp;{plan.price.amount}
+                          </span>
+                          <span className={`text-sm ${highlighted ? "text-paper/60" : "text-ink-3"}`}>
+                            {plan.price.unit}
+                          </span>
+                        </p>
+                        <p className={`mt-1.5 text-xs ${highlighted ? "text-paper/60" : "text-ink-3"}`}>
+                          {"strikethrough" in plan.price && (
+                            <>
+                              <s className="tnum">Rp&nbsp;{plan.price.strikethrough}</s> ·{" "}
+                            </>
+                          )}
+                          {plan.price.note}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p className={`text-4xl font-semibold ${highlighted ? "text-paper" : "text-ink"}`}>
+                          {plan.price.label}
+                        </p>
+                        <p className={`mt-1.5 text-xs ${highlighted ? "text-paper/60" : "text-ink-3"}`}>
+                          {plan.price.note}
+                        </p>
+                      </>
+                    )}
+                  </div>
+
+                  <ul className={`mt-7 space-y-3 border-t pt-7 ${highlighted ? "border-paper/15" : "border-line"}`}>
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex gap-3 text-sm leading-relaxed">
+                        <Check
+                          className={`mt-0.5 h-4 w-4 shrink-0 ${highlighted ? "text-paper" : "text-accent"}`}
+                          aria-hidden="true"
+                          strokeWidth={2.5}
+                        />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* mt-auto menekan tombol ke dasar kartu supaya sejajar antar paket. */}
+                  <div className="mt-auto pt-8">
+                    {plan.price.type === "custom" ? (
+                      <a
+                        href={SITE.whatsapp}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block rounded-lg border border-line py-3 text-center text-sm font-semibold text-ink transition-colors hover:border-ink-3"
+                      >
+                        {plan.cta}
+                      </a>
+                    ) : (
+                      <DaftarButton
+                        source={`pricing-${plan.name.toLowerCase()}`}
+                        className={`w-full rounded-lg text-sm font-semibold transition-colors ${
+                          highlighted
+                            ? "bg-paper py-3.5 text-ink hover:bg-paper/90"
+                            : "bg-accent py-3 text-paper hover:bg-[#055a9f]"
+                        }`}
+                      >
+                        {plan.cta}
+                      </DaftarButton>
+                    )}
+                  </div>
                 </div>
-              </Reveal>
-            );
-          })}
-        </div>
+              );
+            })}
+            </PricingCarousel>
+        </Reveal>
 
         <Reveal delay={240} className="mt-10 text-sm text-ink-3">
           <p>
