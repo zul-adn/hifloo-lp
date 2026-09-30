@@ -30,32 +30,38 @@ export const FEATURES = [
   {
     icon: "Zap",
     title: "Kasir cepat, tetap jalan tanpa internet",
-    description: "Satu transaksi selesai dalam hitungan detik. Kalau koneksi putus, kasir tetap bisa melayani dan datanya tersimpan di perangkat.",
+    description:
+      "Satu transaksi selesai dalam hitungan detik. Kalau koneksi putus, kasir tetap bisa melayani dan datanya tersimpan di perangkat.",
   },
   {
     icon: "Package",
     title: "Stok bergerak sendiri",
-    description: "Penjualan, pembelian, dan retur langsung mengubah angka stok. Mau stok opname pun tidak perlu tutup toko.",
+    description:
+      "Penjualan, pembelian, dan retur langsung mengubah angka stok. Mau stok opname pun tidak perlu tutup toko.",
   },
   {
     icon: "BarChart3",
     title: "Laporan siap kapan saja",
-    description: "Penjualan, laba rugi, keluar masuk stok, dan rekap karyawan. Bisa dibuka dari HP, bisa diunduh ke Excel atau PDF.",
+    description:
+      "Penjualan, laba rugi, keluar masuk stok, dan rekap karyawan. Bisa dibuka dari HP, bisa diunduh ke Excel atau PDF.",
   },
   {
     icon: "Users",
     title: "Absensi dan payroll menyatu",
-    description: "Jam masuk, lembur, dan keterlambatan langsung dipakai menghitung gaji. Tidak ada yang perlu disalin ulang.",
+    description:
+      "Jam masuk, lembur, dan keterlambatan langsung dipakai menghitung gaji. Tidak ada yang perlu disalin ulang.",
   },
   {
     icon: "Building2",
     title: "Banyak cabang, satu dashboard",
-    description: "Bandingkan penjualan antar outlet, pindahkan stok, dan lihat laporan gabungan dari satu layar.",
+    description:
+      "Bandingkan penjualan antar outlet, pindahkan stok, dan lihat laporan gabungan dari satu layar.",
   },
   {
     icon: "FileText",
     title: "Rapi saat diperiksa",
-    description: "Setiap transaksi ada jejaknya: siapa, kapan, dan apa yang diubah. Enak dipakai saat tutup buku atau urusan pajak.",
+    description:
+      "Setiap transaksi ada jejaknya: siapa, kapan, dan apa yang diubah. Enak dipakai saat tutup buku atau urusan pajak.",
   },
 ] as const;
 
@@ -69,15 +75,18 @@ export const HIGHLIGHTS = [
     points: [
       {
         title: "Antrean tidak berhenti",
-        description: "Kasir tetap bisa memindai barang, memberi diskon, dan mencetak struk.",
+        description:
+          "Kasir tetap bisa memindai barang, memberi diskon, dan mencetak struk.",
       },
       {
         title: "Sinkron otomatis",
-        description: "Transaksi yang sempat tertahan dikirim berurutan begitu koneksi pulih.",
+        description:
+          "Transaksi yang sempat tertahan dikirim berurutan begitu koneksi pulih.",
       },
       {
         title: "Tidak ada yang tertimpa",
-        description: "Setiap transaksi punya penanda sendiri, jadi tidak ada data yang dobel saat sinkron.",
+        description:
+          "Setiap transaksi punya penanda sendiri, jadi tidak ada data yang dobel saat sinkron.",
       },
     ],
     visual: "offline",
@@ -91,15 +100,18 @@ export const HIGHLIGHTS = [
     points: [
       {
         title: "Tanpa mesin absen",
-        description: "Cukup pakai HP karyawan. Bisa dikunci ke radius outlet, atau lewat scan QR.",
+        description:
+          "Cukup pakai HP karyawan. Bisa dikunci ke radius outlet, atau lewat scan QR.",
       },
       {
         title: "Lembur terhitung",
-        description: "Keterlambatan dan jam lembur dihitung dari jadwal shift yang Anda tentukan.",
+        description:
+          "Keterlambatan dan jam lembur dihitung dari jadwal shift yang Anda tentukan.",
       },
       {
         title: "Langsung ke gaji",
-        description: "Hasil rekapnya langsung dipakai menghitung gaji, lengkap dengan slip gaji digital.",
+        description:
+          "Hasil rekapnya langsung dipakai menghitung gaji, lengkap dengan slip gaji digital.",
       },
     ],
     visual: "absensi",
@@ -113,15 +125,18 @@ export const HIGHLIGHTS = [
     points: [
       {
         title: "Stok terpisah per lokasi",
-        description: "Gudang dan toko punya angka stok sendiri-sendiri, dengan batas minimum masing-masing.",
+        description:
+          "Gudang dan toko punya angka stok sendiri-sendiri, dengan batas minimum masing-masing.",
       },
       {
         title: "Serah terima tercatat",
-        description: "Barang dihitung saat dikirim dan saat diterima. Kalau ada selisih, langsung kelihatan.",
+        description:
+          "Barang dihitung saat dikirim dan saat diterima. Kalau ada selisih, langsung kelihatan.",
       },
       {
         title: "Laporan gabungan",
-        description: "Omzet dan laba semua cabang dalam satu tampilan, atau dipisah per outlet.",
+        description:
+          "Omzet dan laba semua cabang dalam satu tampilan, atau dipisah per outlet.",
       },
     ],
     visual: "cabang",
@@ -132,37 +147,44 @@ export const AUDIENCES = [
   {
     icon: "Store",
     title: "Toko retail & grosir",
-    description: "Ribuan jenis barang, barcode, harga grosir bertingkat, dan stok yang tetap cocok walau toko sedang ramai.",
+    description:
+      "Ribuan jenis barang, barcode, harga grosir bertingkat, dan stok yang tetap cocok walau toko sedang ramai.",
   },
   {
     icon: "CookingPot",
     title: "Kafe & restoran",
-    description: "Pesanan per meja, dapur langsung dapat pesanannya, dan bahan baku berkurang mengikuti resep.",
+    description:
+      "Pesanan per meja, dapur langsung dapat pesanannya, dan bahan baku berkurang mengikuti resep.",
   },
   {
     icon: "Pill",
     title: "Apotek & toko obat",
-    description: "Nomor batch, tanggal kedaluwarsa, dan pengingat sebelum obat lewat tanggalnya.",
+    description:
+      "Nomor batch, tanggal kedaluwarsa, dan pengingat sebelum obat lewat tanggalnya.",
   },
   {
     icon: "Scissors",
     title: "Usaha jasa",
-    description: "Salon, bengkel, laundry. Daftar layanan, tarif per teknisi, dan jadwal karyawan jadi satu.",
+    description:
+      "Salon, bengkel, laundry. Daftar layanan, tarif per teknisi, dan jadwal karyawan jadi satu.",
   },
 ] as const;
 
 export const STEPS = [
   {
     title: "Buat akun",
-    description: "Isi nama usaha dan email. Tanpa kartu kredit, tanpa pasang aplikasi apa pun.",
+    description:
+      "Isi nama usaha dan email. Tanpa kartu kredit, tanpa pasang aplikasi apa pun.",
   },
   {
     title: "Masukkan barang dan karyawan",
-    description: "Tarik daftar barang dari Excel, atau mulai dari beberapa barang dulu. Akun kasir ditambah seperlunya.",
+    description:
+      "Tarik daftar barang dari Excel, atau mulai dari beberapa barang dulu. Akun kasir ditambah seperlunya.",
   },
   {
     title: "Mulai berjualan",
-    description: "Transaksi pertama sudah masuk laporan hari itu juga. Sisanya jalan sendiri.",
+    description:
+      "Transaksi pertama sudah masuk laporan hari itu juga. Sisanya jalan sendiri.",
   },
 ] as const;
 
@@ -181,7 +203,8 @@ export const PLANS = [
   },
   {
     name: "Basic",
-    description: "Untuk outlet yang ramai dan mulai mengurus pelanggan serta karyawan.",
+    description:
+      "Untuk outlet yang ramai dan mulai mengurus pelanggan serta karyawan.",
     price: {
       type: "paid" as const,
       amount: "85.000",
@@ -196,16 +219,16 @@ export const PLANS = [
       "1 outlet, 2 terminal kasir",
       "Transaksi tanpa batas",
       "Laporan penjualan harian",
-      "CRM dan data pelanggan",
+
       "Diskon dan promo",
       "Inventori dan stok",
-      "Manajemen karyawan",
     ],
     cta: "Coba Basic 30 hari",
   },
   {
     name: "Pro",
-    description: "Untuk usaha dengan beberapa outlet yang butuh laporan lebih dalam.",
+    description:
+      "Untuk usaha dengan beberapa outlet yang butuh laporan lebih dalam.",
     price: {
       type: "paid" as const,
       amount: "149.000",
@@ -216,13 +239,20 @@ export const PLANS = [
       "Sampai 3 outlet, 2 terminal kasir per outlet",
       "Semua fitur Basic",
       "Laporan lengkap",
+      "Manajemen karyawan",
+      "CRM dan data pelanggan",
     ],
     cta: "Coba Pro 30 hari",
   },
   {
     name: "Enterprise",
-    description: "Untuk usaha bercabang yang butuh semua modul dalam satu sistem.",
-    price: { type: "custom" as const, label: "Custom", note: "Disesuaikan jumlah outlet" },
+    description:
+      "Untuk usaha bercabang yang butuh semua modul dalam satu sistem.",
+    price: {
+      type: "custom" as const,
+      label: "Custom",
+      note: "Disesuaikan jumlah outlet",
+    },
     features: [
       "Semua fitur, outlet tanpa batas",
       "Gudang dan transfer stok",
