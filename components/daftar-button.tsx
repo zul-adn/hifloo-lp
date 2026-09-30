@@ -24,6 +24,10 @@ export default function DaftarButton({ children, className = "", source, onClick
     <button
       type="button"
       className={className}
+      // Kliknya sudah dikirim sebagai `open_signup_form` lengkap dengan
+      // `source`. Tanpa penanda ini, penyimak global di AnalyticsTracker
+      // mengirim `button_click` untuk klik yang sama — satu aksi, dua event.
+      data-track-ignore=""
       onClick={() => {
         onClick?.();
         trackEvent("open_signup_form", { source });
