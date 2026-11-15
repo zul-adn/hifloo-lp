@@ -1,15 +1,21 @@
 import {
   ArrowRight,
   BarChart3,
+  Bike,
   Building2,
   Check,
+  ChefHat,
   CookingPot,
   FileText,
+  MessageCircle,
   Package,
   Pill,
+  QrCode,
   Scissors,
+  Stamp,
   Store,
   Users,
+  Wallet,
   Zap,
   type LucideIcon,
 } from "lucide-react";
@@ -32,6 +38,12 @@ const ICONS: Record<string, LucideIcon> = {
   CookingPot,
   Pill,
   Scissors,
+  QrCode,
+  ChefHat,
+  MessageCircle,
+  Stamp,
+  Bike,
+  Wallet,
 };
 
 const VISUALS = {

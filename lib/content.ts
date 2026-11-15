@@ -43,7 +43,43 @@ export const FEATURES = [
     icon: "BarChart3",
     title: "Laporan siap kapan saja",
     description:
-      "Penjualan, laba rugi, keluar masuk stok, dan rekap karyawan. Bisa dibuka dari HP, bisa diunduh ke Excel atau PDF.",
+      "Penjualan per produk dan kategori, diskon yang terpakai, laba rugi, sampai rekap karyawan. Bisa dibuka dari HP, bisa diunduh ke Excel atau PDF.",
+  },
+  {
+    icon: "QrCode",
+    title: "Menu online dan pesan dari meja",
+    description:
+      "Setiap toko dapat halaman menu sendiri. Pelanggan pesan untuk diambil, atau scan QR di meja lalu bayar QRIS langsung dari HP-nya.",
+  },
+  {
+    icon: "ChefHat",
+    title: "Dapur ikut bergerak",
+    description:
+      "Pesanan tercetak di printer kasir, dapur, atau bar masing-masing, lengkap dengan nomor antrian. Bahan baku berkurang mengikuti resep.",
+  },
+  {
+    icon: "MessageCircle",
+    title: "Struk dan kabar pesanan lewat WhatsApp",
+    description:
+      "Tautkan nomor WhatsApp toko, lalu struk dan kabar pesanan terkirim ke pelanggan dari nomor itu. Isi pesannya bisa diatur per outlet.",
+  },
+  {
+    icon: "Stamp",
+    title: "Kartu stempel digital",
+    description:
+      "Pelanggan kumpulkan stempel setiap belanja, lalu tukar dengan hadiah. Tidak perlu kartu kertas yang gampang hilang.",
+  },
+  {
+    icon: "Bike",
+    title: "Harga khusus GoFood dan kawan-kawan",
+    description:
+      "Atur harga per produk untuk tiap aplikasi pesan antar, dan tambahkan metode bayar sendiri seperti EDC bank. Laporannya tetap terpisah per saluran.",
+  },
+  {
+    icon: "Wallet",
+    title: "Terima QRIS, cairkan ke rekening",
+    description:
+      "Pembayaran online masuk ke saldo usaha Anda. Rincian biayanya terlihat jelas, dan saldo bisa dicairkan ke rekening kapan saja.",
   },
   {
     icon: "Users",
@@ -198,13 +234,15 @@ export const PLANS = [
       "Maksimal 1.000 transaksi per bulan",
       "Laporan penjualan harian",
       "Aplikasi kasir Android",
+      "Menu online toko sendiri",
+      "Terima pembayaran QRIS",
     ],
     cta: "Mulai gratis",
   },
   {
     name: "Basic",
     description:
-      "Untuk outlet yang ramai dan mulai mengurus pelanggan serta karyawan.",
+      "Untuk outlet yang ramai, dengan dapur, pesanan online, dan ojek online.",
     price: {
       type: "paid" as const,
       amount: "85.000",
@@ -219,9 +257,11 @@ export const PLANS = [
       "1 outlet, 2 terminal kasir",
       "Transaksi tanpa batas",
       "Laporan penjualan harian",
-
       "Diskon dan promo",
       "Inventori dan stok",
+      "Printer dapur dan nomor antrian",
+      "Harga GoFood dan metode bayar sendiri",
+      "QR meja, pelanggan bayar dari HP",
     ],
     cta: "Coba Basic 30 hari",
   },
@@ -238,9 +278,12 @@ export const PLANS = [
     features: [
       "Sampai 3 outlet, 2 terminal kasir per outlet",
       "Semua fitur Basic",
-      "Laporan lengkap",
+      "Laporan lengkap: per produk, kategori, dan diskon",
       "Manajemen karyawan",
       "CRM dan data pelanggan",
+      "Kartu stempel digital",
+      "Struk dan kabar pesanan via WhatsApp",
+      "Transfer stok antar outlet",
     ],
     cta: "Coba Pro 30 hari",
   },
@@ -255,9 +298,11 @@ export const PLANS = [
     },
     features: [
       "Semua fitur, outlet tanpa batas",
-      "Gudang dan transfer stok",
+      "Gudang pusat dan pengiriman ke outlet",
       "Pengadaan dan pembelian ke supplier",
       "Layar dapur (KDS) dan stok bahan baku",
+      "Kasir minta bahan ke dapur atau gudang",
+      "Kolaborasi brand dengan mitra",
       "Keuangan dan pembukuan",
       "Didampingi sampai bisa jalan sendiri",
     ],
@@ -268,11 +313,11 @@ export const PLANS = [
 export const FAQ = [
   {
     q: "Apakah paket Super Basic benar-benar gratis?",
-    a: "Ya. Paket Super Basic tidak ada batas waktunya dan tidak meminta kartu kredit. Yang dibatasi cuma kapasitasnya: satu outlet, satu terminal kasir, maksimal 1.000 transaksi per bulan, dan laporan harian. Selama itu masih cukup, Anda tidak perlu bayar apa pun.",
+    a: "Ya. Paket Super Basic tidak ada batas waktunya dan tidak meminta kartu kredit. Yang dibatasi cuma kapasitasnya: satu outlet, satu terminal kasir, maksimal 1.000 transaksi per bulan, dan laporan harian. Menu online dan pembayaran QRIS sudah termasuk. Selama itu masih cukup, Anda tidak perlu bayar apa pun.",
   },
   {
     q: "Apa bedanya Basic, Pro, dan Enterprise?",
-    a: "Basic untuk satu outlet dengan dua terminal kasir: transaksi tanpa batas, laporan penjualan harian, CRM, promo, inventori, dan manajemen karyawan. Pro menambah sampai tiga outlet dan laporan lengkap. Enterprise membuka semua modul, termasuk layar dapur (KDS), gudang, pengadaan, stok bahan baku, dan keuangan. Harga Enterprise menyesuaikan jumlah outlet dan fitur yang dipakai.",
+    a: "Basic untuk satu outlet dengan dua terminal kasir: transaksi tanpa batas, promo, inventori, printer dapur dengan nomor antrian, harga khusus GoFood dan kawan-kawan, serta QR meja yang dibayar pelanggan dari HP. Pro menambah sampai tiga outlet, laporan lengkap, manajemen karyawan, CRM, kartu stempel, WhatsApp toko, dan transfer stok antar outlet. Enterprise membuka semua modul, termasuk layar dapur (KDS), gudang pusat, pengadaan, stok bahan baku, keuangan, dan kolaborasi brand dengan mitra. Harga Enterprise menyesuaikan jumlah outlet dan fitur yang dipakai.",
   },
   {
     q: "Kasir tetap bisa dipakai saat internet mati?",
@@ -285,6 +330,10 @@ export const FAQ = [
   {
     q: "Perangkat apa saja yang didukung?",
     a: "Dashboard-nya jalan di browser apa saja, entah dari komputer, tablet, atau HP. Aplikasi kasirnya ada untuk HP dan tablet Android. Versi iPhone masih kami kerjakan.",
+  },
+  {
+    q: "Bagaimana pelanggan bisa pesan dan bayar online?",
+    a: "Setiap toko dapat halaman menu sendiri yang bisa dibuka dari HP tanpa pasang aplikasi. Pelanggan memilih menu, lalu membayar dengan QRIS dari HP-nya. Pesanan langsung masuk ke kasir. Uangnya tercatat di saldo usaha Anda dan bisa dicairkan ke rekening, dengan rincian biaya yang terlihat jelas.",
   },
   {
     q: "Bagaimana data saya disimpan?",
