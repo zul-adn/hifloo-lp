@@ -231,7 +231,7 @@ export const PLANS = [
     price: { type: "free" as const, label: "Gratis", note: "Selamanya" },
     features: [
       "1 outlet, 1 terminal kasir",
-      "Maksimal 1.000 transaksi per bulan",
+      "Maksimal 500 transaksi per bulan",
       "Laporan penjualan harian",
       "Aplikasi kasir Android",
       "Menu online toko sendiri",
@@ -245,7 +245,7 @@ export const PLANS = [
       "Untuk outlet yang ramai, dengan dapur, pesanan online, dan ojek online.",
     price: {
       type: "paid" as const,
-      amount: "85.000",
+      amount: "70.000",
       unit: "/bulan",
       strikethrough: "149.000",
       note: "Gratis 30 hari, tanpa kartu kredit",
@@ -313,7 +313,7 @@ export const PLANS = [
 export const FAQ = [
   {
     q: "Apakah paket Super Basic benar-benar gratis?",
-    a: "Ya. Paket Super Basic tidak ada batas waktunya dan tidak meminta kartu kredit. Yang dibatasi cuma kapasitasnya: satu outlet, satu terminal kasir, maksimal 1.000 transaksi per bulan, dan laporan harian. Menu online dan pembayaran QRIS sudah termasuk. Selama itu masih cukup, Anda tidak perlu bayar apa pun.",
+    a: "Ya. Paket Super Basic tidak ada batas waktunya dan tidak meminta kartu kredit. Yang dibatasi cuma kapasitasnya: satu outlet, satu terminal kasir, maksimal 500 transaksi per bulan, dan laporan harian. Menu online dan pembayaran QRIS sudah termasuk. Selama itu masih cukup, Anda tidak perlu bayar apa pun.",
   },
   {
     q: "Apa bedanya Basic, Pro, dan Enterprise?",
