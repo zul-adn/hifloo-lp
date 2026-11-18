@@ -2,6 +2,8 @@ export const SITE = {
   url: "https://hifloo.com",
   name: "Hifloo",
   appUrl: "https://app.hifloo.com",
+  /** Situs panduan pemakaian (repo hifloo-documentation, Cloudflare Pages). */
+  docsUrl: "https://docs.hifloo.com",
   email: "zull@floonic.com",
   phone: "+62 857 0547 7252",
   phoneE164: "+6285705477252",

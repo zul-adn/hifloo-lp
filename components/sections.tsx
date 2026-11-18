@@ -207,6 +207,16 @@ export function Highlights() {
                     </div>
                   ))}
                 </dl>
+
+                {"guide" in highlight && (
+                  <a
+                    href={`${SITE.docsUrl}${highlight.guide.path}`}
+                    className="mt-8 inline-flex items-center gap-1.5 font-medium text-accent transition-colors hover:text-ink"
+                  >
+                    {highlight.guide.label}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                )}
               </Reveal>
 
               <Reveal delay={100} className={visualFirst ? "lg:order-1" : undefined}>
