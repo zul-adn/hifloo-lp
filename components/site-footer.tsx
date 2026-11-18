@@ -41,6 +41,10 @@ const COLUMNS = [
     ],
   },
   {
+    title: "Bantuan",
+    links: [{ label: "Panduan absensi", href: `${SITE.docsUrl}/panduan/absensi` }],
+  },
+  {
     title: "Ketentuan",
     links: [
       { label: "Kebijakan Privasi", href: "/privacy" },
@@ -53,7 +57,7 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-line bg-paper">
       <div className="shell py-16 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div className="max-w-sm">
             <p className="font-wordmark text-2xl leading-none text-ink">hifloo</p>
             <p className="mt-4 leading-relaxed text-ink-2">

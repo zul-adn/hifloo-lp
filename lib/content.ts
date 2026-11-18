@@ -151,6 +151,7 @@ export const HIGHLIGHTS = [
       },
     ],
     visual: "absensi",
+    guide: { label: "Baca panduan absensi", path: "/panduan/absensi" },
   },
   {
     id: "cabang",
